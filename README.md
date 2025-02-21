@@ -49,3 +49,59 @@ git push origin 'example'
 ```
 
 **Replace 'example' with the name of your branch**
+
+<hr />
+
+## To install dependencies
+
+**Use your preferred js package manager**
+
+#### npm
+```js
+npm install
+```
+
+#### pnpm
+```js
+pnpm install
+```
+
+#### yarn
+```js
+yarn install
+```
+
+#### bun
+```js
+bun install
+```
+
+`This installs the dependencies listed in the project's package.json`
+
+<hr />
+
+## To run this project
+
+**Run the script(dev) with your preferred js package manager**
+
+#### npm
+```js
+npm run dev
+```
+
+#### pnpm
+```js
+pnpm run dev
+```
+
+#### yarn
+```js
+yarn dev
+```
+
+#### bun
+```js
+bun dev
+```
+
+`This runs the application in development mode`
