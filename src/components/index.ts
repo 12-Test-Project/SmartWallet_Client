@@ -1,4 +1,5 @@
-// import components
+import SignInForm from "./sign-in-form.component"
 
-// export components
-export default {}
+export default {
+  SignInForm
+}
