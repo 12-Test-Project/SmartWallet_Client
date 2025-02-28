@@ -1,39 +1,73 @@
-import Transaction from "@api/transaction.api"
-import { utilGetUserData } from "@utils/userData.util"
-import { FormEvent } from "react"
+import { TransactionAPI, TTransaction } from "@/api"
+import { FormInput, TFormInput } from "@/components"
+import { FormEvent, useState } from "react"
 
-export default function TransactionUpdate() {
+interface TransactionUpdateProps {
+  transaction: TTransaction,
+  token: string,
+  setTransactionUpdatingId: React.Dispatch<React.SetStateAction<number>>,
+  setIsTransactionUpdated: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export default function TransactionUpdate(prop: TransactionUpdateProps) {
+
+  const [formInputList] = useState<Array<TFormInput>>([
+    {
+      id: crypto.randomUUID(),
+      name: "amount",
+      label: "Amount",
+      type: "number",
+      defaultValue: prop.transaction.amount,
+      classes: {
+        container: "",
+        label: "",
+        input: ""
+      }
+    },
+    {
+      id: crypto.randomUUID(),
+      name: "type",
+      label: "Type",
+      type: "text",
+      defaultValue: prop.transaction.type,
+      classes: {
+        container: "",
+        label: "",
+        input: ""
+      }
+    },
+  ])
 
   const submit = async (e: FormEvent) => {
     e.preventDefault()
 
-    // const form = e.target as HTMLFormElement
-    // const formData = new FormData(form)
+    const form = e.target as HTMLFormElement
+    const formData = new FormData(form)
 
-    const userData = await utilGetUserData("75ce4a2d-d6da-406d-b107-d6fc3a5048b5")
-
-    if (!userData) return
-
-    const allTransactionsResult = await Transaction.update({
-      id: 3,
+    const allTransactionsResult = await TransactionAPI.update({
+      id: prop.transaction.id,
       version: 1,
-      amount: 500,
-      type: "Bono",
-      userId: userData.id
-    }, userData.jwToken)
+      amount: Number(formData.get('amount')),
+      type: String(formData.get('type')),
+      userId: prop.transaction.userId
+    }, prop.token)
 
     if (!allTransactionsResult.suceded) {
-      console.log(`@@ GetAll Transaction Status: failed: `, allTransactionsResult)
+      console.log(`@@ Update Transaction Status: failed: `, allTransactionsResult)
     } else {
-      console.log(`@@ GetAll Transaction Status: success: `, allTransactionsResult)
+      console.log(`@@ Update Transaction Status: success: `, allTransactionsResult)
+      prop.setTransactionUpdatingId(-1)
+      prop.setIsTransactionUpdated(true)
     }
   }
 
   return (
     <div className="p-2">
-      <h3>Welcome Home!</h3>
       <form onSubmit={submit}>
-        <button>Submit</button>
+        {formInputList.map((formInput) => (
+          <FormInput key={formInput.id} classes={formInput.classes} type={formInput.type} name={formInput.name} id={formInput.id} label={formInput.label} defaultValue={formInput.defaultValue} />
+        ))}
+        <button type="submit">Save</button>
       </form>
     </div>
   )

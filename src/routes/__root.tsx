@@ -1,4 +1,4 @@
-import { homeRoute, aboutRoute } from ".";
+import { homeRoute, aboutRoute, signUpRoute } from ".";
 import {
   createRootRoute,
   createRouter,
@@ -6,6 +6,8 @@ import {
   Outlet,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
+import { signInRoute } from "./signIn.route";
+import { transactionsRoute } from "./transactions.route";
 
 export const rootRoute = createRootRoute({
   component: () => (
@@ -16,7 +18,16 @@ export const rootRoute = createRootRoute({
         </Link>{" "}
         <Link to="/about" className="[&.active]:font-bold">
           About
-        </Link>
+        </Link>{" "}
+        <Link to="/signup" className="[&.active]:font-bold">
+          SignUp
+        </Link>{" "}
+        <Link to="/signin" className="[&.active]:font-bold">
+          SignIn
+        </Link>{" "}
+        <Link to="/transactions" className="[&.active]:font-bold">
+          Transactions
+        </Link>{" "}
       </div>
       <hr />
       <Outlet />
@@ -25,7 +36,7 @@ export const rootRoute = createRootRoute({
   ),
 });
 
-const routeTree = rootRoute.addChildren([homeRoute, aboutRoute]);
+const routeTree = rootRoute.addChildren([homeRoute, aboutRoute, signUpRoute, signInRoute, transactionsRoute]);
 
 export const router = createRouter({ routeTree });
 
