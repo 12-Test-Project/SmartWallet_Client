@@ -4,6 +4,7 @@ import UserAuthentication from "./form/user/userAuthentication.component"
 import TransactionList from "./lists/transactionList.component"
 import TransactionCreate from "./form/transaction/transactionCreate.component"
 import TransactionUpdate from "./form/transaction/transactionUpdate.component"
+import Header from "./header.component"
 
 type TFormInput = FormInputProps
 
@@ -14,5 +15,7 @@ export {
   TransactionList,
   TransactionCreate,
   TransactionUpdate,
+  Header,
+
   type TFormInput,
 }

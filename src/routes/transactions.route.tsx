@@ -7,9 +7,13 @@ import { UserAtom, UserLoader } from "@/stores/user.store"
 import { useEffect, useState } from "react"
 import { useAtomValue } from "jotai"
 import { ActiveTransactionSortingdAtom, TSorting } from "@/stores/transaction.store"
+import { hasAccess } from "@/utils"
 
 export const transactionsRoute = createRoute({
   getParentRoute: () => rootRoute,
+  async beforeLoad(_ctx) {
+    await hasAccess()
+  },
   path: '/transactions',
   component: function Transactions() {
     const [isTransactionCreateFormActive, setIsTransactionCreateFormActive] = useState(false)
