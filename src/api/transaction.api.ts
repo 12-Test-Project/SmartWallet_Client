@@ -3,7 +3,7 @@ interface TransactionSchema {
 	amount: number;
 	type: string;
 	userId: string;
-	version: string;
+	version: number;
 }
 
 interface TransactionResponse {
@@ -19,22 +19,79 @@ interface TransactionGeneralResponse {
 
 type Transaction = Pick<TransactionSchema, "id" | "version">;
 
+type TransactionCreateData = Omit<TransactionSchema, "id">
+
 // POST
+async function create(
+	transaction: TransactionCreateData,
+	token: string,
+): Promise<TransactionResponse> {
+	const uri = `/api/v${transaction.version}/Transacction/`;
+
+  const reqBody: Omit<TransactionCreateData, "version"> = {
+    amount: transaction.amount,
+    type: transaction.type,
+    userId: transaction.userId
+  }
+
+	try {
+		const res = await fetch(uri, {
+			method: "POST",
+			headers: {
+				"Accept": "*/*",
+				"Authorization": `bearer ${token}`,
+        "Content-Type": "application/json"
+			},
+      body: JSON.stringify(reqBody)
+		});
+
+		if (!res.ok) throw new Error(res.statusText);
+
+		const data = (await res.json()) as TransactionResponse;
+		return data;
+	} catch (error) {
+		throw new Error(`@@ Retrieval failed with error: ${error}`);
+	}
+}
+
 
 // GET
 async function getById(
 	transaction: Transaction,
 	token: string,
 ): Promise<TransactionResponse> {
-	const { id, version } = transaction;
-	const uri = `/api/v${version}/Transacction/${id}`;
+	const uri = `/api/v${transaction.version}/Transacction/${transaction.id}`;
 
 	try {
 		const res = await fetch(uri, {
 			method: "GET",
 			headers: {
-				accept: "*/*",
-				Authorization: token,
+				"Accept": "application/json",
+				"Authorization": `bearer ${token}`,
+			},
+		});
+
+		if (!res.ok) throw new Error(res.statusText);
+
+		const data = (await res.json()) as TransactionResponse;
+		return data;
+	} catch (error) {
+		throw new Error(`@@ Retrieval failed with error: ${error}`);
+	}
+}
+
+async function getAll(
+	version: number,
+	token: string,
+): Promise<TransactionResponse> {
+	const uri = `/api/v${version}/Transacction`;
+
+	try {
+		const res = await fetch(uri, {
+			method: "GET",
+			headers: {
+				"Accept": "application/json",
+				"Authorization": `bearer ${token}`,
 			},
 		});
 
@@ -49,26 +106,31 @@ async function getById(
 
 // PUT
 async function update(
-	transaction: Transaction,
+	transaction: TransactionSchema,
 	token: string,
-): Promise<TransactionGeneralResponse> {
-	const { id, version } = transaction;
-	const uri = `/api/v${version}/Transacction/${id}`;
+): Promise<TransactionResponse> {
+	const uri = `/api/v${transaction.version}/Transacction/${transaction.id}`;
 
 	try {
 		const res = await fetch(uri, {
 			method: "PUT",
 			headers: {
-				accept: "*/*",
-				Authorization: token,
+				"Accept": "*/*",
+				"Authorization": `bearer ${token}`,
+        "Content-Type": "application/json"
 			},
+      body: JSON.stringify({
+        id: transaction.id,
+        amount: transaction.amount,
+        type: transaction.type,
+        userId: transaction.userId
+      } as TransactionSchema)
 		});
 
 		if (!res.ok) throw new Error(res.statusText);
 
-		return {
-			success: true,
-		};
+    const data = (await res.json()) as TransactionResponse;
+		return data;
 	} catch (error) {
 		throw new Error(`@@ Update failed with error: ${error}`);
 	}
@@ -79,15 +141,14 @@ async function deleteById(
 	transaction: Transaction,
 	token: string,
 ): Promise<TransactionGeneralResponse> {
-	const { id, version } = transaction;
-	const uri = `/api/v${version}/Transacction/${id}`;
+	const uri = `/api/v${transaction.version}/Transacction/${transaction.id}`;
 
 	try {
 		const res = await fetch(uri, {
 			method: "DELETE",
 			headers: {
-				accept: "*/*",
-				Authorization: token,
+				"Accept": "*/*",
+				"Authorization": `bearer ${token}`,
 			},
 		});
 
@@ -102,6 +163,8 @@ async function deleteById(
 }
 
 export default {
+  create,
+  getAll,
   getById,
   update,
   deleteById
