@@ -1,4 +1,4 @@
-interface TransactionSchema {
+export interface TransactionSchema {
 	id: number;
 	amount: number;
 	type: string;
@@ -10,7 +10,7 @@ interface TransactionResponse {
 	suceded: boolean;
 	message: string;
 	errors: string | null;
-	data: Omit<TransactionSchema, "version">;
+	data: Array<Omit<TransactionSchema, "version">>;
 }
 
 interface TransactionGeneralResponse {

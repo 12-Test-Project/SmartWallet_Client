@@ -1,15 +1,9 @@
+import { TAccountSchema } from "@/api";
 import Dexie, { type EntityTable } from "dexie";
 
-interface User {
-    id: string;
-    userName: string;
-    name: string;
-    email: string;
-    roles: string[];
-    isActive: boolean;
+export interface User extends TAccountSchema {
     hasError: boolean;
     error: string | null;
-    jwToken: string;
 }
 
 interface UserActionResponse<T> {
@@ -26,9 +20,10 @@ db.version(1).stores({
     users: "id, userName, email, isActive" // Define indexes
 });
 
-// CREATE or UPDATE
+// CREATE
 export async function saveUser(user: User): Promise<UserActionResponse<string | null>> {
     try {
+        await db.users.clear(); // Clear the entire users table
         await db.users.put(user);
         return { success: true, data: "User saved successfully" };
     } catch (error) {
@@ -37,10 +32,10 @@ export async function saveUser(user: User): Promise<UserActionResponse<string | 
 }
 
 // READ
-export async function getUser(userId: string): Promise<UserActionResponse<User | null>> {
+export async function getUser(): Promise<UserActionResponse<User | null>> {
     try {
-        const user = await db.users.get(userId);
-        return { success: true, data: user || null };
+        const user = await db.users.toArray();
+        return { success: true, data: user[0] || null };
     } catch (error) {
         console.error("Error retrieving user:", error);
         return { success: false, data: null };

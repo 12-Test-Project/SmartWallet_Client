@@ -10,6 +10,8 @@ export interface FormInputProps {
     label: string,
     input: string
   },
+  value?: string | number | readonly string[] | undefined,
+  defaultValue?: string | number | readonly string[] | undefined
 }
 
 export default function FormInput(prop: FormInputProps) {
@@ -18,7 +20,7 @@ export default function FormInput(prop: FormInputProps) {
   return  (
     <div className={prop.classes.container}>
       <label htmlFor={prop.id} className={prop.classes.label}>{prop.label}</label>
-      <input type={prop.type} name={prop.name} id={prop.id} className={prop.classes.input} />
+      <input type={prop.type} value={prop.value} defaultValue={prop.defaultValue} name={prop.name} id={prop.id} className={prop.classes.input} />
     </div>
   )
 }

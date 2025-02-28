@@ -1,8 +1,37 @@
-import { saveUser } from "@data/user.data"
+import { User } from "@data/user.data"
 import Account from "@api/account.api"
-import { FormEvent } from "react"
+import { FormEvent, useState } from "react"
+import { FormInput, TFormInput } from "@/components"
+import { UserSetter } from "@/stores/user.store";
+import { useAtom } from "jotai";
 
 export default function UserAuthentication() {
+  const [, setUser] = useAtom(UserSetter);
+  const [formInputList] = useState<Array<TFormInput>>([
+    {
+      id: crypto.randomUUID(),
+      name: "email",
+      label: "Email",
+      type: "email",
+      classes: {
+        container: "",
+        label: "",
+        input: ""
+      }
+    },
+    {
+      id: crypto.randomUUID(),
+      name: "password",
+      label: "Password",
+      type: "password",
+      classes: {
+        container: "",
+        label: "",
+        input: ""
+      }
+    },
+  ])
+
   const submit = async (e: FormEvent) => {
     e.preventDefault()
 
@@ -18,18 +47,16 @@ export default function UserAuthentication() {
       console.log(`@@ Authentication Status: failed: `, authenticationResult)
     } else {
       console.log(`@@ Authentication Status: success: `, authenticationResult)
-      try {
-        const response = await saveUser(authenticationResult);
-        alert(response.data); // Show success message
-      } catch (error: any) {
-          alert(`Error: ${error.message}`);
-      }
+      setUser(authenticationResult as User)
     }
   }
-  
+
   return (
     <form onSubmit={submit}>
-    <button>Submit</button>
-  </form> 
+      {formInputList.map((formInput) => (
+        <FormInput key={formInput.id} classes={formInput.classes} type={formInput.type} name={formInput.name} id={formInput.id} label={formInput.label} />
+      ))}
+      <button>Submit</button>
+    </form>
   )
 }

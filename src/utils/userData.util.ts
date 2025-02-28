@@ -1,8 +1,8 @@
 import { getUser } from "@data/user.data";
 
-export const utilGetUserData = async (id: string) => {
+export const utilGetUserData = async () => {
   try {
-      const response = await getUser(id);
+      const response = await getUser();
       if (response.success) {
           return response.data
       } else {

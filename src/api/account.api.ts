@@ -10,7 +10,7 @@ enum AccountEndpoint {
   REGISTERUSER = "/api/Account/RegistrarUsuario",
 }
 
-interface AccountSchema {
+export interface AccountSchema {
   id: string;
   name: string;
   phoneNumber: string;

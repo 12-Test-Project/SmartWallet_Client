@@ -1,8 +1,44 @@
+import { TTransaction } from "@/api"
 import Transaction from "@/api/transaction.api"
-import { utilGetUserData } from "@utils/userData.util"
-import { FormEvent } from "react"
+import { FormInput, TFormInput } from "@/components"
+import { IsTransactionUpdatedAtom } from "@/stores/transaction.store"
+import { useAtom } from "jotai"
+import { FormEvent, useState } from "react"
 
-export default function TransactionCreate() {
+interface TransactionCreateFormProps {
+  userId: string,
+  userToken: string,
+  closeTransactionForm: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export default function TransactionCreate(prop: TransactionCreateFormProps) {
+  const [_isTransactionUpdated, setIsTransactionUpdated] = useAtom(IsTransactionUpdatedAtom)
+  const [_, setTransactionList] = useState<Array<TTransaction>>([])
+
+  const [formInputList] = useState<Array<TFormInput>>([
+    {
+      id: crypto.randomUUID(),
+      name: "amount",
+      label: "Amount",
+      type: "number",
+      classes: {
+        container: "",
+        label: "",
+        input: ""
+      }
+    },
+    {
+      id: crypto.randomUUID(),
+      name: "type",
+      label: "Type",
+      type: "text",
+      classes: {
+        container: "",
+        label: "",
+        input: ""
+      }
+    },
+  ])
 
   const submit = async (e: FormEvent) => {
     e.preventDefault()
@@ -10,29 +46,30 @@ export default function TransactionCreate() {
     const form = e.target as HTMLFormElement
     const formData = new FormData(form)
 
-    const userData = await utilGetUserData("75ce4a2d-d6da-406d-b107-d6fc3a5048b5")
-
-    if(!userData) return
-
     const createTransactionResult = await Transaction.create({
       amount: Number(formData.get('amount')),
       type: String(formData.get("type")),
-      userId: userData.id,
+      userId: prop.userId,
       version: 1
-    }, userData.jwToken)
+    }, prop.userToken)
 
     if (!createTransactionResult.suceded) {
       console.log(`@@ Create Transaction Status: failed: `, createTransactionResult)
     } else {
       console.log(`@@ Create Transaction Status: success: `, createTransactionResult)
+      setTransactionList(createTransactionResult.data)
+      setIsTransactionUpdated(true)
+      prop.closeTransactionForm(false)
     }
   }
 
   return (
     <div className="p-2">
-      <h3>Welcome Home!</h3>
       <form onSubmit={submit}>
-        <button>Submit</button>
+        {formInputList.map((formInput) => (
+          <FormInput key={formInput.id} classes={formInput.classes} type={formInput.type} name={formInput.name} id={formInput.id} label={formInput.label} />
+        ))}
+        <button type="submit">Create</button>
       </form>
     </div>
   )
