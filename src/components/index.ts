@@ -1,5 +1,10 @@
 import SignInForm from "./sign-in-form.component"
+import FormInput, {FormInputProps} from "./formInput.component"
 
-export default {
-  SignInForm
+type TFormInput = FormInputProps
+
+export {
+  SignInForm,
+  FormInput,
+  type TFormInput,
 }
