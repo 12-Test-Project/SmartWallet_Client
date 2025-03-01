@@ -1,31 +1,27 @@
-import { homeRoute, aboutRoute } from ".";
+import { homeRoute, aboutRoute, signUpRoute } from ".";
 import {
   createRootRoute,
   createRouter,
-  Link,
   Outlet,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
+import { signInRoute } from "./signIn.route";
+import { transactionsRoute } from "./transactions.route";
+import { Header } from "@/components";
 
 export const rootRoute = createRootRoute({
   component: () => (
     <>
-      <div className="p-2 flex gap-2">
-        <Link to="/" className="[&.active]:font-bold">
-          Home
-        </Link>{" "}
-        <Link to="/about" className="[&.active]:font-bold">
-          About
-        </Link>
+      <Header />
+      <div className="mx-auto max-w-[1600px] p-6 lg:px-8">
+        <Outlet />
       </div>
-      <hr />
-      <Outlet />
       <TanStackRouterDevtools />
     </>
   ),
 });
 
-const routeTree = rootRoute.addChildren([homeRoute, aboutRoute]);
+const routeTree = rootRoute.addChildren([homeRoute, aboutRoute, signUpRoute, signInRoute, transactionsRoute]);
 
 export const router = createRouter({ routeTree });
 

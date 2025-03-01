@@ -11,11 +11,32 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as TransactionsRouteImport } from './routes/transactions.route'
+import { Route as SignUpRouteImport } from './routes/signUp.route'
+import { Route as SignInRouteImport } from './routes/signIn.route'
 import { Route as HomeRouteImport } from './routes/home.route'
 import { Route as AboutRouteImport } from './routes/about.route'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const TransactionsRouteRoute = TransactionsRouteImport.update({
+  id: '/transactions',
+  path: '/transactions',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SignUpRouteRoute = SignUpRouteImport.update({
+  id: '/signUp',
+  path: '/signUp',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SignInRouteRoute = SignInRouteImport.update({
+  id: '/signIn',
+  path: '/signIn',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const HomeRouteRoute = HomeRouteImport.update({
   id: '/home',
@@ -60,6 +81,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HomeRouteImport
       parentRoute: typeof rootRoute
     }
+    '/signIn': {
+      id: '/signIn'
+      path: '/signIn'
+      fullPath: '/signIn'
+      preLoaderRoute: typeof SignInRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/signUp': {
+      id: '/signUp'
+      path: '/signUp'
+      fullPath: '/signUp'
+      preLoaderRoute: typeof SignUpRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/transactions': {
+      id: '/transactions'
+      path: '/transactions'
+      fullPath: '/transactions'
+      preLoaderRoute: typeof TransactionsRouteImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -69,12 +111,18 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRouteRoute
   '/home': typeof HomeRouteRoute
+  '/signIn': typeof SignInRouteRoute
+  '/signUp': typeof SignUpRouteRoute
+  '/transactions': typeof TransactionsRouteRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRouteRoute
   '/home': typeof HomeRouteRoute
+  '/signIn': typeof SignInRouteRoute
+  '/signUp': typeof SignUpRouteRoute
+  '/transactions': typeof TransactionsRouteRoute
 }
 
 export interface FileRoutesById {
@@ -82,14 +130,24 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRouteRoute
   '/home': typeof HomeRouteRoute
+  '/signIn': typeof SignInRouteRoute
+  '/signUp': typeof SignUpRouteRoute
+  '/transactions': typeof TransactionsRouteRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/home'
+  fullPaths: '/' | '/about' | '/home' | '/signIn' | '/signUp' | '/transactions'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/home'
-  id: '__root__' | '/' | '/about' | '/home'
+  to: '/' | '/about' | '/home' | '/signIn' | '/signUp' | '/transactions'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/home'
+    | '/signIn'
+    | '/signUp'
+    | '/transactions'
   fileRoutesById: FileRoutesById
 }
 
@@ -97,12 +155,18 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRouteRoute: typeof AboutRouteRoute
   HomeRouteRoute: typeof HomeRouteRoute
+  SignInRouteRoute: typeof SignInRouteRoute
+  SignUpRouteRoute: typeof SignUpRouteRoute
+  TransactionsRouteRoute: typeof TransactionsRouteRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRouteRoute: AboutRouteRoute,
   HomeRouteRoute: HomeRouteRoute,
+  SignInRouteRoute: SignInRouteRoute,
+  SignUpRouteRoute: SignUpRouteRoute,
+  TransactionsRouteRoute: TransactionsRouteRoute,
 }
 
 export const routeTree = rootRoute
@@ -117,7 +181,10 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/about",
-        "/home"
+        "/home",
+        "/signIn",
+        "/signUp",
+        "/transactions"
       ]
     },
     "/": {
@@ -128,6 +195,15 @@ export const routeTree = rootRoute
     },
     "/home": {
       "filePath": "home.route.tsx"
+    },
+    "/signIn": {
+      "filePath": "signIn.route.tsx"
+    },
+    "/signUp": {
+      "filePath": "signUp.route.tsx"
+    },
+    "/transactions": {
+      "filePath": "transactions.route.tsx"
     }
   }
 }

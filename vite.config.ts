@@ -18,5 +18,14 @@ export default defineConfig({
       "@data": path.resolve(__dirname, "./src/data"),
       "@utils": path.resolve(__dirname, "./src/utils"),
     }
-  }
+  },
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:5800",
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
 })
