@@ -73,6 +73,9 @@ export default function TransactionCreate(prop: TransactionCreateFormProps) {
       <div className="relative z-50 mx-auto max-w-[400px] rounded-lg bg-white p-6 shadow-lg">
         <form onSubmit={submit}>
           <div className="flex flex-col gap-4">
+            <h2 className="font-bold mb-2">Creando Transacción</h2>
+          </div>
+          <div className="flex flex-col gap-4">
             {formInputList.map((formInput) => (
               <FormInput
                 key={formInput.id}
