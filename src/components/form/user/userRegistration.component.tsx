@@ -1,15 +1,17 @@
 import { FormInput, TFormInput } from "@/components"
+import { NotificationType } from "@/components/notifier.component";
 import { User } from "@/data/user.data";
 import { redirectToAtom, UserSetter } from "@/stores/user.store";
 import Account, { Role } from "@api/account.api"
-import { useRouter } from "@tanstack/react-router";
+import { Link, useRouter } from "@tanstack/react-router";
 import { useAtom, useAtomValue } from "jotai";
 import { FormEvent, useEffect, useState } from "react"
+import Notification from "@/components/notifier.component";
 
 export default function UserRegistration() {
   const [, setUser] = useAtom(UserSetter);
   const router = useRouter()
-    const redirectTo = useAtomValue(redirectToAtom)
+  const redirectTo = useAtomValue(redirectToAtom)
   const [formInputList] = useState<Array<TFormInput>>([
     {
       id: crypto.randomUUID(),
@@ -90,6 +92,17 @@ export default function UserRegistration() {
     }
   ])
 
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationType, setNotificationType] =
+    useState<NotificationType>("success");
+  const [notificationMessage, setNotificationMessage] = useState("");
+
+  const handleShowNotification = (type: NotificationType, message: string) => {
+    setNotificationType(type);
+    setNotificationMessage(message);
+    setShowNotification(true);
+  };
+
   const submit = async (e: FormEvent) => {
     e.preventDefault()
 
@@ -108,6 +121,11 @@ export default function UserRegistration() {
 
     if (registrationResult.hasError) {
       console.log(`@@ Registration Status: failed: `, registrationResult)
+      if (typeof registrationResult.error == "string")
+        if(registrationResult.error.includes('Passwords'))
+          handleShowNotification("warning", "La contraseña debe contener al menos 6 caracteres más un carácter especial!")
+        else if(registrationResult.error.includes('already'))
+          handleShowNotification("warning", "Ya existe un usuario con este email")
     } else {
       console.log(`@@ Registration Status: success: `, registrationResult)
       const authenticationResult = await Account.authenticate({
@@ -125,9 +143,9 @@ export default function UserRegistration() {
   }
 
   useEffect(() => {
-      if(redirectTo)
-        router.navigate({to: redirectTo})
-    }, [redirectTo])
+    if (redirectTo)
+      router.navigate({ to: redirectTo })
+  }, [redirectTo])
 
   return (
     <form onSubmit={submit} className="mx-auto max-w-[400px] p-6 lg:px-8">
@@ -135,6 +153,9 @@ export default function UserRegistration() {
         {formInputList.map((formInput) => (
           <FormInput key={formInput.id} classes={formInput.classes} type={formInput.type} name={formInput.name} id={formInput.id} label={formInput.label} />
         ))}
+        <Link to="/signin" className="text-sm/6 text-gray-900">
+          Tienes cuenta? <span aria-hidden="true" className="[&.active]:font-bold">Accede &rarr;</span>
+        </Link>
       </div>
       <br />
       <button
@@ -144,6 +165,13 @@ export default function UserRegistration() {
       >
         Registrarse
       </button>
+      {showNotification && (
+        <Notification
+          message={notificationMessage}
+          type={notificationType}
+          onClose={() => setShowNotification(false)}
+        />
+      )}
     </form>
   )
 }

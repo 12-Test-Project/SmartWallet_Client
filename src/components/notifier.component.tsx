@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 
 // Define the types of notifications
-type NotificationType = "success" | "error" | "warning" | "info";
+export type NotificationType = "success" | "error" | "warning" | "info";
 
 // Props for the Notification component
-interface NotificationProps {
+export interface NotificationProps {
   message: string;
   type: NotificationType;
   onClose: () => void;

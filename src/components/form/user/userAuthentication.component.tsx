@@ -4,7 +4,7 @@ import { FormEvent, useEffect, useState } from "react"
 import { FormInput, TFormInput } from "@/components"
 import { redirectToAtom, UserSetter } from "@/stores/user.store";
 import { useAtom, useAtomValue } from "jotai";
-import { useRouter } from "@tanstack/react-router";
+import { Link, useRouter } from "@tanstack/react-router";
 
 export default function UserAuthentication() {
   const [, setUser] = useAtom(UserSetter);
@@ -55,8 +55,8 @@ export default function UserAuthentication() {
   }
 
   useEffect(() => {
-    if(redirectTo)
-      router.navigate({to: redirectTo})
+    if (redirectTo)
+      router.navigate({ to: redirectTo })
   }, [redirectTo])
 
   return (
@@ -65,6 +65,9 @@ export default function UserAuthentication() {
         {formInputList.map((formInput) => (
           <FormInput key={formInput.id} classes={formInput.classes} type={formInput.type} name={formInput.name} id={formInput.id} label={formInput.label} />
         ))}
+        <Link to="/signup" className="text-sm/6 text-gray-900">
+          Registrarse <span aria-hidden="true">&rarr;</span>
+        </Link>
       </div>
       <br />
       <button

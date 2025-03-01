@@ -30,7 +30,7 @@ interface AccountPublicAuthResponseExtended extends AccountSchema {
 }
 
 interface AccountRegisterResponse {
-  error: boolean | null
+  error: boolean | string | null
   hasError: boolean
   userId: string | null
 }
@@ -105,7 +105,7 @@ async function register(
 
     if (!res.ok) {
       const errorText = await res.text(); // Get error response if available
-      throw new Error(`Register failed: ${res.status} ${errorText}`);
+      throw new Error(`@@ Register failed: ${res.status} ${errorText}`);
     }
 
     return await res.json() as AccountRegisterResponse;
