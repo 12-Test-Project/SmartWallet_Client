@@ -7,7 +7,7 @@ export default function UserRegistration() {
     {
       id: crypto.randomUUID(),
       name: "name",
-      label: "Name",
+      label: "Nombre",
       type: "text",
       classes: {
         container: "",
@@ -18,7 +18,7 @@ export default function UserRegistration() {
     {
       id: crypto.randomUUID(),
       name: "phoneNumber",
-      label: "Phone Number",
+      label: "Teléfono",
       type: "tel",
       classes: {
         container: "",
@@ -40,7 +40,7 @@ export default function UserRegistration() {
     {
       id: crypto.randomUUID(),
       name: "userName",
-      label: "Username",
+      label: "Nombre de usuario",
       type: "text",
       classes: {
         container: "",
@@ -51,7 +51,7 @@ export default function UserRegistration() {
     {
       id: crypto.randomUUID(),
       name: "password",
-      label: "Password",
+      label: "Contraseña",
       type: "password",
       classes: {
         container: "",
@@ -73,7 +73,7 @@ export default function UserRegistration() {
     {
       id: crypto.randomUUID(),
       name: "active",
-      label: "Active",
+      label: "Activo",
       type: "checkbox",
       classes: {
         container: "",
@@ -119,7 +119,7 @@ export default function UserRegistration() {
         type="submit"
         data-ripple-light="true"
       >
-        Sign Up
+        Registrarse
       </button>
     </form>
   )

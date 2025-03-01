@@ -42,9 +42,9 @@ export const transactionsRoute = createRoute({
       type: TSorting,
       action: () => void
     }> = [
-        { label: "All", type: "all", action: () => setActiveTransactionSorting("all") },
-        { label: "Type", type: "type", action: () => setActiveTransactionSorting("type") },
-        { label: "Amount", type: "amount", action: () => setActiveTransactionSorting("amount") }
+        { label: "Todas", type: "all", action: () => setActiveTransactionSorting("all") },
+        { label: "Tipo", type: "type", action: () => setActiveTransactionSorting("type") },
+        { label: "Cantidad", type: "amount", action: () => setActiveTransactionSorting("amount") }
       ]
 
     return (
