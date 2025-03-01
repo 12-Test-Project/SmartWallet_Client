@@ -13,7 +13,7 @@ export const rootRoute = createRootRoute({
   component: () => (
     <>
       <Header />
-      <div className="mx-auto max-w-[1600px] p-6 lg:px-8">
+      <div className=" mx-auto max-w-[1600px] p-6 lg:px-8">
         <Outlet />
       </div>
       <TanStackRouterDevtools />
