@@ -3,6 +3,8 @@ import { saveUser, User } from "@data/user.data";
 
 export const UserAtom = atom<User | null>(null);
 
+export const redirectToAtom = atom<string | null>(null)
+
 export const UserSetter = atom(
   null, // No read function (this is a write-only atom)
   async (_, set, update: User | null) => {
@@ -12,7 +14,9 @@ export const UserSetter = atom(
       console.log("User updated:", update);
       try {
         const response = await saveUser(update);
-        alert(response.data); // Show success message
+        if(response.success)
+          set(redirectToAtom, "/transactions");
+        // alert(response.data); // Show success message
       } catch (error: any) {
         alert(`Error: ${error.message}`);
       }

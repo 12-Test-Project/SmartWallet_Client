@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Dialog,
   DialogPanel,
@@ -22,7 +22,8 @@ import {
 // import { 
 //   ChevronDownIcon, 
 //   PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
-import { Link } from '@tanstack/react-router'
+import { Link, useLocation, useRouter } from '@tanstack/react-router'
+import LOGO from "@assets/logo.svg"
 
 // const products = [
 //   { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
@@ -38,16 +39,24 @@ import { Link } from '@tanstack/react-router'
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const currentLocation = useLocation()
+  const [hideElement, setHideElement] = useState(false)
+
+  useEffect(() => {
+    setHideElement(currentLocation.pathname.includes('transactions') ? true : false)
+  }, [currentLocation])
+
+  const logo = LOGO
 
   return (
-    <header className="bg-white">
+    <header className="bg-white bg-clip-border shadow-md">
       <nav aria-label="Global" className="mx-auto flex max-w-[1600px] items-center justify-between p-6 lg:px-8">
         <div className="flex lg:flex-1">
           <Link to="/" className="[&.active]:font-bold -m-1.5 p-1.5">
             <span className="sr-only">Smartwallet</span>
             <img
               alt="logo"
-              src="https://tailwindui.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
+              src={logo}
               className="h-8 w-auto"
             />
           </Link>
@@ -104,18 +113,18 @@ export default function Header() {
           </Popover> */}
 
           <Link to="/" className="[&.active]:font-bold text-sm/6 font-semibold text-gray-900">
-            Home
+            Inicio
           </Link>
           <Link to="/transactions" className="[&.active]:font-bold text-sm/6 font-semibold text-gray-900">
-            Transactions
+            Transacciones
           </Link>
           <Link to="/about" className="[&.active]:font-bold text-sm/6 font-semibold text-gray-900">
-            About
+            Acerca De
           </Link>
         </PopoverGroup>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div hidden={hideElement} className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Link to="/signin" className="[&.active]:font-bold text-sm/6 font-semibold text-gray-900">
-            Sign In <span aria-hidden="true">&rarr;</span>
+            Acceder <span aria-hidden="true">&rarr;</span>
           </Link>
         </div>
       </nav>
@@ -127,7 +136,7 @@ export default function Header() {
               <span className="sr-only">Smartwallet</span>
               <img
                 alt="logo"
-                src="https://tailwindui.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
+                src={logo}
                 className="h-8 w-auto"
               />
             </Link>
@@ -162,18 +171,18 @@ export default function Header() {
                   </DisclosurePanel>
                 </Disclosure> */}
                 <Link to="/" className="[&.active]:font-bold -mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
-                  Home
+                  Inicio
                 </Link>
                 <Link to="/transactions" className="[&.active]:font-bold -mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
-                  Transactions
+                  Transacciones
                 </Link>
                 <Link to="/about" className="[&.active]:font-bold -mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
-                  About
+                  Acerca De
                 </Link>
               </div>
-              <div className="py-6">
+              <div hidden={hideElement} className="py-6">
                 <Link to="/signin" className="[&.active]:font-bold -mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
-                  Sign In
+                  Acceder
                 </Link>
               </div>
             </div>

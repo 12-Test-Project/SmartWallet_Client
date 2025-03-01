@@ -107,11 +107,20 @@ export default function UserRegistration() {
   }
 
   return (
-    <form onSubmit={submit}>
-      {formInputList.map((formInput) => (
-        <FormInput key={formInput.id} classes={formInput.classes} type={formInput.type} name={formInput.name} id={formInput.id} label={formInput.label} />
-      ))}
-      <button>Submit</button>
+    <form onSubmit={submit} className="mx-auto max-w-[400px] p-6 lg:px-8">
+      <div className="flex flex-col gap-4">
+        {formInputList.map((formInput) => (
+          <FormInput key={formInput.id} classes={formInput.classes} type={formInput.type} name={formInput.name} id={formInput.id} label={formInput.label} />
+        ))}
+      </div>
+      <br />
+      <button
+        className="select-none rounded-lg bg-yellow-700 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-yellow-700/20 transition-all hover:shadow-lg hover:shadow-yellow-700/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        type="submit"
+        data-ripple-light="true"
+      >
+        Sign Up
+      </button>
     </form>
   )
 }

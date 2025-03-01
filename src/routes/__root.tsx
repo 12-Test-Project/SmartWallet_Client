@@ -13,7 +13,6 @@ export const rootRoute = createRootRoute({
   component: () => (
     <>
       <Header />
-      <hr />
       <div className="mx-auto max-w-[1600px] p-6 lg:px-8">
         <Outlet />
       </div>
