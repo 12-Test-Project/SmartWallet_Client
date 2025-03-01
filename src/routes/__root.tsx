@@ -8,14 +8,16 @@ import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { signInRoute } from "./signIn.route";
 import { transactionsRoute } from "./transactions.route";
 import { Header } from "@/components";
+import Footer from "@/components/footer.component";
 
 export const rootRoute = createRootRoute({
   component: () => (
     <>
       <Header />
-      <div className=" mx-auto max-w-[1600px] p-6 lg:px-8">
+      <div className="mx-auto max-w-[1600px] p-6 lg:px-8 mb-20">
         <Outlet />
       </div>
+      <Footer />
       <TanStackRouterDevtools />
     </>
   ),
