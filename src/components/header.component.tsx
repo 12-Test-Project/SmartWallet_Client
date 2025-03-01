@@ -22,7 +22,7 @@ import {
 // import { 
 //   ChevronDownIcon, 
 //   PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
-import { Link, useLocation, useRouter } from '@tanstack/react-router'
+import { Link, useLocation } from '@tanstack/react-router'
 import LOGO from "@assets/logo.svg"
 
 // const products = [
