@@ -51,7 +51,7 @@ export const transactionsRoute = createRoute({
       <div className="p-2">
         {/* Control Panel */}
         <div className="relative p-6 gap-4 flex justify-between rounded-xl bg-white bg-clip-border text-gray-700 ">
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
             {listOfFilters.map((filter) => (
               <button key={filter.type} onClick={filter.action} data-ripple-light="true" className="select-none rounded-lg py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase shadow-md shadow-yellow-700/20 transition-all hover:shadow-lg hover:shadow-yellow-700/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">{filter.label}</button>
             ))}
