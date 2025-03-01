@@ -19,7 +19,7 @@ export default function TransactionCreate(prop: TransactionCreateFormProps) {
     {
       id: crypto.randomUUID(),
       name: "amount",
-      label: "Amount",
+      label: "Cantidad",
       type: "number",
       classes: {
         container: "",
@@ -30,7 +30,7 @@ export default function TransactionCreate(prop: TransactionCreateFormProps) {
     {
       id: crypto.randomUUID(),
       name: "type",
-      label: "Type",
+      label: "Tipo",
       type: "text",
       classes: {
         container: "",

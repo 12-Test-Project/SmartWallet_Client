@@ -15,7 +15,7 @@ export default function TransactionUpdate(prop: TransactionUpdateProps) {
     {
       id: crypto.randomUUID(),
       name: "amount",
-      label: "Amount",
+      label: "Cantidad",
       type: "number",
       defaultValue: prop.transaction.amount,
       classes: {
@@ -27,7 +27,7 @@ export default function TransactionUpdate(prop: TransactionUpdateProps) {
     {
       id: crypto.randomUUID(),
       name: "type",
-      label: "Type",
+      label: "Tipo",
       type: "text",
       defaultValue: prop.transaction.type,
       classes: {

@@ -25,7 +25,7 @@ export default function UserAuthentication() {
     {
       id: crypto.randomUUID(),
       name: "password",
-      label: "Password",
+      label: "Contraseña",
       type: "password",
       classes: {
         container: "",
@@ -72,7 +72,7 @@ export default function UserAuthentication() {
         type="submit"
         data-ripple-light="true"
       >
-        Sign In
+        Acceder
       </button>
     </form>
   )

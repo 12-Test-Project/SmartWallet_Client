@@ -1,13 +1,20 @@
 import { FormInput, TFormInput } from "@/components"
+import { User } from "@/data/user.data";
+import { redirectToAtom, UserSetter } from "@/stores/user.store";
 import Account, { Role } from "@api/account.api"
-import { FormEvent, useState } from "react"
+import { useRouter } from "@tanstack/react-router";
+import { useAtom, useAtomValue } from "jotai";
+import { FormEvent, useEffect, useState } from "react"
 
 export default function UserRegistration() {
+  const [, setUser] = useAtom(UserSetter);
+  const router = useRouter()
+    const redirectTo = useAtomValue(redirectToAtom)
   const [formInputList] = useState<Array<TFormInput>>([
     {
       id: crypto.randomUUID(),
       name: "name",
-      label: "Name",
+      label: "Nombre",
       type: "text",
       classes: {
         container: "",
@@ -18,7 +25,7 @@ export default function UserRegistration() {
     {
       id: crypto.randomUUID(),
       name: "phoneNumber",
-      label: "Phone Number",
+      label: "Teléfono",
       type: "tel",
       classes: {
         container: "",
@@ -40,7 +47,7 @@ export default function UserRegistration() {
     {
       id: crypto.randomUUID(),
       name: "userName",
-      label: "Username",
+      label: "Nombre de usuario",
       type: "text",
       classes: {
         container: "",
@@ -51,7 +58,7 @@ export default function UserRegistration() {
     {
       id: crypto.randomUUID(),
       name: "password",
-      label: "Password",
+      label: "Contraseña",
       type: "password",
       classes: {
         container: "",
@@ -73,7 +80,7 @@ export default function UserRegistration() {
     {
       id: crypto.randomUUID(),
       name: "active",
-      label: "Active",
+      label: "Activo",
       type: "checkbox",
       classes: {
         container: "",
@@ -103,8 +110,24 @@ export default function UserRegistration() {
       console.log(`@@ Registration Status: failed: `, registrationResult)
     } else {
       console.log(`@@ Registration Status: success: `, registrationResult)
+      const authenticationResult = await Account.authenticate({
+        email: String(formData.get('email')),
+        password: String(formData.get('password')),
+      })
+
+      if (authenticationResult.hasError) {
+        console.log(`@@ Authentication Status: failed: `, authenticationResult)
+      } else {
+        console.log(`@@ Authentication Status: success: `, authenticationResult)
+        await setUser(authenticationResult as User)
+      }
     }
   }
+
+  useEffect(() => {
+      if(redirectTo)
+        router.navigate({to: redirectTo})
+    }, [redirectTo])
 
   return (
     <form onSubmit={submit} className="mx-auto max-w-[400px] p-6 lg:px-8">
@@ -119,7 +142,7 @@ export default function UserRegistration() {
         type="submit"
         data-ripple-light="true"
       >
-        Sign Up
+        Registrarse
       </button>
     </form>
   )
