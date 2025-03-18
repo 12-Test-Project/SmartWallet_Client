@@ -1,20 +1,22 @@
+import { AccountAPI } from ".";
+
 export interface TransactionSchema {
-	id: number;
-	amount: number;
-	type: string;
-	userId: string;
-	version: number;
+   id: number;
+   amount: number;
+   type: string;
+   userId: string;
+   version: number;
 }
 
 interface TransactionResponse {
-	suceded: boolean;
-	message: string;
-	errors: string | null;
-	data: Array<Omit<TransactionSchema, "version">>;
+   suceded: boolean;
+   message: string;
+   errors: string | null;
+   data: Array<Omit<TransactionSchema, "version">>;
 }
 
 interface TransactionGeneralResponse {
-	success: boolean;
+   success: boolean;
 }
 
 type Transaction = Pick<TransactionSchema, "id" | "version">;
@@ -23,149 +25,149 @@ type TransactionCreateData = Omit<TransactionSchema, "id">
 
 // POST
 async function create(
-	transaction: TransactionCreateData,
-	token: string,
+   transaction: TransactionCreateData,
+   token: string,
 ): Promise<TransactionResponse> {
-	const uri = `/api/v${transaction.version}/Transacction/`;
+   const uri = `/api/v${transaction.version}/Transacction/`;
 
-  const reqBody: Omit<TransactionCreateData, "version"> = {
-    amount: transaction.amount,
-    type: transaction.type,
-    userId: transaction.userId
-  }
+   const reqBody: Omit<TransactionCreateData, "version"> = {
+      amount: transaction.amount,
+      type: transaction.type,
+      userId: transaction.userId
+   }
 
-	try {
-		const res = await fetch(uri, {
-			method: "POST",
-			headers: {
-				"Accept": "*/*",
-				"Authorization": `bearer ${token}`,
-        "Content-Type": "application/json"
-			},
-      body: JSON.stringify(reqBody)
-		});
+   try {
+      const res = await fetch(uri, {
+         method: "POST",
+         headers: {
+            "Accept": "*/*",
+            "Authorization": `bearer ${token}`,
+            "Content-Type": "application/json"
+         },
+         body: JSON.stringify(reqBody)
+      });
 
-		if (!res.ok) throw new Error(res.statusText);
+      if (!res.ok) throw new Error(res.statusText);
 
-		const data = (await res.json()) as TransactionResponse;
-		return data;
-	} catch (error) {
-		throw new Error(`@@ Retrieval failed with error: ${error}`);
-	}
+      const data = (await res.json()) as TransactionResponse;
+      return data;
+   } catch (error) {
+      throw new Error(`@@ Retrieval failed with error: ${error}`);
+   }
 }
 
 
 // GET
 async function getById(
-	transaction: Transaction,
-	token: string,
+   transaction: Transaction,
+   token: string,
 ): Promise<TransactionResponse> {
-	const uri = `/api/v${transaction.version}/Transacction/${transaction.id}`;
+   const uri = `/api/v${transaction.version}/Transacction/${transaction.id}`;
 
-	try {
-		const res = await fetch(uri, {
-			method: "GET",
-			headers: {
-				"Accept": "application/json",
-				"Authorization": `bearer ${token}`,
-			},
-		});
+   try {
+      const res = await fetch(uri, {
+         method: "GET",
+         headers: {
+            "Accept": "application/json",
+            "Authorization": `bearer ${token}`,
+         },
+      });
 
-		if (!res.ok) throw new Error(res.statusText);
+      if (!res.ok) throw new Error(res.statusText);
 
-		const data = (await res.json()) as TransactionResponse;
-		return data;
-	} catch (error) {
-		throw new Error(`@@ Retrieval failed with error: ${error}`);
-	}
+      const data = (await res.json()) as TransactionResponse;
+      return data;
+   } catch (error) {
+      throw new Error(`@@ Retrieval failed with error: ${error}`);
+   }
 }
 
 async function getAll(
-	version: number,
-	token: string,
+   version: number,
+   token: string,
 ): Promise<TransactionResponse> {
-	const uri = `/api/v${version}/Transacction`;
+   const uri = `/api/v${version}/Transacction`;
 
-	try {
-		const res = await fetch(uri, {
-			method: "GET",
-			headers: {
-				"Accept": "application/json",
-				"Authorization": `bearer ${token}`,
-			},
-		});
+   try {
+      const res = await AccountAPI.fetchWithAuth(uri, {
+         method: "GET",
+         headers: {
+            "Accept": "application/json",
+            "Authorization": `bearer ${token}`,
+         },
+      });
 
-		if (!res.ok) throw new Error(res.statusText);
+      if (!res.ok) throw new Error(res.statusText);
 
-		const data = (await res.json()) as TransactionResponse;
-		return data;
-	} catch (error) {
-		throw new Error(`@@ Retrieval failed with error: ${error}`);
-	}
+      const data = (await res.json()) as TransactionResponse;
+      return data;
+   } catch (error) {
+      throw new Error(`@@ Retrieval failed with error: ${error}`);
+   }
 }
 
 // PUT
 async function update(
-	transaction: TransactionSchema,
-	token: string,
+   transaction: TransactionSchema,
+   token: string,
 ): Promise<TransactionResponse> {
-	const uri = `/api/v${transaction.version}/Transacction/${transaction.id}`;
+   const uri = `/api/v${transaction.version}/Transacction/${transaction.id}`;
 
-	try {
-		const res = await fetch(uri, {
-			method: "PUT",
-			headers: {
-				"Accept": "*/*",
-				"Authorization": `bearer ${token}`,
-        "Content-Type": "application/json"
-			},
-      body: JSON.stringify({
-        id: transaction.id,
-        amount: transaction.amount,
-        type: transaction.type,
-        userId: transaction.userId
-      } as TransactionSchema)
-		});
+   try {
+      const res = await fetch(uri, {
+         method: "PUT",
+         headers: {
+            "Accept": "*/*",
+            "Authorization": `bearer ${token}`,
+            "Content-Type": "application/json"
+         },
+         body: JSON.stringify({
+            id: transaction.id,
+            amount: transaction.amount,
+            type: transaction.type,
+            userId: transaction.userId
+         } as TransactionSchema)
+      });
 
-		if (!res.ok) throw new Error(res.statusText);
+      if (!res.ok) throw new Error(res.statusText);
 
-    const data = (await res.json()) as TransactionResponse;
-		return data;
-	} catch (error) {
-		throw new Error(`@@ Update failed with error: ${error}`);
-	}
+      const data = (await res.json()) as TransactionResponse;
+      return data;
+   } catch (error) {
+      throw new Error(`@@ Update failed with error: ${error}`);
+   }
 }
 
 // DELETE
 async function deleteById(
-	transaction: Transaction,
-	token: string,
+   transaction: Transaction,
+   token: string,
 ): Promise<TransactionGeneralResponse> {
-	const uri = `/api/v${transaction.version}/Transacction/${transaction.id}`;
+   const uri = `/api/v${transaction.version}/Transacction/${transaction.id}`;
 
-	try {
-		const res = await fetch(uri, {
-			method: "DELETE",
-			headers: {
-				"Accept": "*/*",
-				"Authorization": `bearer ${token}`,
-			},
-		});
+   try {
+      const res = await fetch(uri, {
+         method: "DELETE",
+         headers: {
+            "Accept": "*/*",
+            "Authorization": `bearer ${token}`,
+         },
+      });
 
-		if (!res.ok) throw new Error(res.statusText);
+      if (!res.ok) throw new Error(res.statusText);
 
-		return {
-			success: true,
-		};
-	} catch (error) {
-		throw new Error(`@@ Deletion failed with error: ${error}`);
-	}
+      return {
+         success: true,
+      };
+   } catch (error) {
+      throw new Error(`@@ Deletion failed with error: ${error}`);
+   }
 }
 
 export default {
-  create,
-  getAll,
-  getById,
-  update,
-  deleteById
+   create,
+   getAll,
+   getById,
+   update,
+   deleteById
 };
