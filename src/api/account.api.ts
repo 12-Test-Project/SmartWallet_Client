@@ -1,3 +1,6 @@
+import { getUser, updateUserToken } from "@/data/user.data"
+import { utilGetToken } from "@/utils";
+
 export enum Role {
   ADMIN = "Admin",
   DEVELOPER = "Developer",
@@ -30,7 +33,7 @@ interface AccountPublicAuthResponseExtended extends AccountSchema {
 }
 
 interface AccountRegisterResponse {
-  error: boolean | null
+  error: boolean | string | null
   hasError: boolean
   userId: string | null
 }
@@ -77,6 +80,36 @@ async function authenticate(
   }
 }
 
+async function reAuthenticateUser(): Promise<string | null> {
+   try {
+     const userResponse = await getUser();
+     if (!userResponse.success || !userResponse.data) {
+       throw new Error("User not found in IndexedDB");
+     }
+ 
+     const { email, password } = userResponse.data;
+ 
+     if (!email || !password) {
+       throw new Error("User credentials not found in IndexedDB");
+     }
+ 
+     // Call the authenticate function to get a new token
+     const authResponse = await authenticate({ email, password });
+ 
+     if (authResponse.hasError || !authResponse.jwToken) {
+       throw new Error("Re-authentication failed");
+     }
+ 
+     // Update the token in IndexedDB
+     await updateUserToken(userResponse.data.id, authResponse.jwToken)
+ 
+     return authResponse.jwToken;
+   } catch (error) {
+     console.error("Error re-authenticating user:", error);
+     return null;
+   }
+ }
+
 async function register(
   account: AccountRegister,
 ): Promise<AccountRegisterResponse> {
@@ -105,7 +138,7 @@ async function register(
 
     if (!res.ok) {
       const errorText = await res.text(); // Get error response if available
-      throw new Error(`Register failed: ${res.status} ${errorText}`);
+      throw new Error(`@@ Register failed: ${res.status} ${errorText}`);
     }
 
     return await res.json() as AccountRegisterResponse;
@@ -114,7 +147,44 @@ async function register(
   }
 }
 
+async function fetchWithAuth(url: string, options: RequestInit = {}): Promise<Response> {
+   let token = await utilGetToken();
+   if (!token) {
+     throw new Error("No token available");
+   }
+ 
+   options.headers = {
+     ...options.headers,
+     Authorization: `Bearer ${token}`,
+   };
+ 
+   console.log("@@ Fetching With Auth")
+
+   let response = await fetch(url, options);
+ 
+   if (response.status === 401) {
+     // Token might be expired, try to re-authenticate
+     const newToken = await reAuthenticateUser();
+     if (!newToken) {
+       throw new Error("Failed to re-authenticate user");
+     }
+ 
+     // Update the token in the headers
+     options.headers = {
+       ...options.headers,
+       Authorization: `Bearer ${newToken}`,
+     };
+ 
+     // Retry the request with the new token
+     response = await fetch(url, options);
+   }
+ 
+   return response;
+ }
+
 export default {
   authenticate,
-  register
+  reAuthenticateUser,
+  register,
+  fetchWithAuth
 }

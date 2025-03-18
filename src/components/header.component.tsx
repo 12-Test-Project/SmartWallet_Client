@@ -22,7 +22,7 @@ import {
 // import { 
 //   ChevronDownIcon, 
 //   PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
-import { Link, useLocation, useRouter } from '@tanstack/react-router'
+import { Link, useLocation } from '@tanstack/react-router'
 import LOGO from "@assets/logo.svg"
 
 // const products = [
@@ -49,7 +49,7 @@ export default function Header() {
   const logo = LOGO
 
   return (
-    <header className="bg-white bg-clip-border shadow-md">
+    <header className="bg-white bg-clip-border">
       <nav aria-label="Global" className="mx-auto flex max-w-[1600px] items-center justify-between p-6 lg:px-8">
         <div className="flex lg:flex-1">
           <Link to="/" className="[&.active]:font-bold -m-1.5 p-1.5">

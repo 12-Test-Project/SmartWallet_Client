@@ -19,7 +19,7 @@ export default function TransactionCreate(prop: TransactionCreateFormProps) {
     {
       id: crypto.randomUUID(),
       name: "amount",
-      label: "Amount",
+      label: "Cantidad",
       type: "number",
       classes: {
         container: "",
@@ -30,7 +30,7 @@ export default function TransactionCreate(prop: TransactionCreateFormProps) {
     {
       id: crypto.randomUUID(),
       name: "type",
-      label: "Type",
+      label: "Tipo",
       type: "text",
       classes: {
         container: "",
@@ -72,6 +72,9 @@ export default function TransactionCreate(prop: TransactionCreateFormProps) {
       {/* Modal Content */}
       <div className="relative z-50 mx-auto max-w-[400px] rounded-lg bg-white p-6 shadow-lg">
         <form onSubmit={submit}>
+          <div className="flex flex-col gap-4">
+            <h2 className="font-bold mb-2">Creando Transacción</h2>
+          </div>
           <div className="flex flex-col gap-4">
             {formInputList.map((formInput) => (
               <FormInput
