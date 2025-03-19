@@ -42,6 +42,16 @@ export async function getUser(): Promise<UserActionResponse<User | null>> {
     }
 }
 
+export async function updateUserToken(userId: string, jwt: string) {
+   try {
+      await db.users.update(userId, { jwToken: jwt });
+      return { success: true, data: null };
+   } catch (error) {
+      console.error("Error updating token:", error);
+      return { success: false, data: null };
+   }
+}
+
 // DELETE
 export async function deleteUser(userId: string): Promise<UserActionResponse<string | null>> {
     try {

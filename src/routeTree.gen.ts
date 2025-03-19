@@ -14,7 +14,9 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as TransactionsRouteImport } from './routes/transactions.route'
 import { Route as SignUpRouteImport } from './routes/signUp.route'
 import { Route as SignInRouteImport } from './routes/signIn.route'
+import { Route as SalaryRouteImport } from './routes/salary.route'
 import { Route as HomeRouteImport } from './routes/home.route'
+import { Route as AdviceRouteImport } from './routes/advice.route'
 import { Route as AboutRouteImport } from './routes/about.route'
 import { Route as IndexImport } from './routes/index'
 
@@ -38,9 +40,21 @@ const SignInRouteRoute = SignInRouteImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const SalaryRouteRoute = SalaryRouteImport.update({
+  id: '/salary',
+  path: '/salary',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const HomeRouteRoute = HomeRouteImport.update({
   id: '/home',
   path: '/home',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AdviceRouteRoute = AdviceRouteImport.update({
+  id: '/advice',
+  path: '/advice',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -74,11 +88,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRoute
     }
+    '/advice': {
+      id: '/advice'
+      path: '/advice'
+      fullPath: '/advice'
+      preLoaderRoute: typeof AdviceRouteImport
+      parentRoute: typeof rootRoute
+    }
     '/home': {
       id: '/home'
       path: '/home'
       fullPath: '/home'
       preLoaderRoute: typeof HomeRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/salary': {
+      id: '/salary'
+      path: '/salary'
+      fullPath: '/salary'
+      preLoaderRoute: typeof SalaryRouteImport
       parentRoute: typeof rootRoute
     }
     '/signIn': {
@@ -110,7 +138,9 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRouteRoute
+  '/advice': typeof AdviceRouteRoute
   '/home': typeof HomeRouteRoute
+  '/salary': typeof SalaryRouteRoute
   '/signIn': typeof SignInRouteRoute
   '/signUp': typeof SignUpRouteRoute
   '/transactions': typeof TransactionsRouteRoute
@@ -119,7 +149,9 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRouteRoute
+  '/advice': typeof AdviceRouteRoute
   '/home': typeof HomeRouteRoute
+  '/salary': typeof SalaryRouteRoute
   '/signIn': typeof SignInRouteRoute
   '/signUp': typeof SignUpRouteRoute
   '/transactions': typeof TransactionsRouteRoute
@@ -129,7 +161,9 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/about': typeof AboutRouteRoute
+  '/advice': typeof AdviceRouteRoute
   '/home': typeof HomeRouteRoute
+  '/salary': typeof SalaryRouteRoute
   '/signIn': typeof SignInRouteRoute
   '/signUp': typeof SignUpRouteRoute
   '/transactions': typeof TransactionsRouteRoute
@@ -137,14 +171,32 @@ export interface FileRoutesById {
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/home' | '/signIn' | '/signUp' | '/transactions'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/advice'
+    | '/home'
+    | '/salary'
+    | '/signIn'
+    | '/signUp'
+    | '/transactions'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/home' | '/signIn' | '/signUp' | '/transactions'
+  to:
+    | '/'
+    | '/about'
+    | '/advice'
+    | '/home'
+    | '/salary'
+    | '/signIn'
+    | '/signUp'
+    | '/transactions'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/advice'
     | '/home'
+    | '/salary'
     | '/signIn'
     | '/signUp'
     | '/transactions'
@@ -154,7 +206,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRouteRoute: typeof AboutRouteRoute
+  AdviceRouteRoute: typeof AdviceRouteRoute
   HomeRouteRoute: typeof HomeRouteRoute
+  SalaryRouteRoute: typeof SalaryRouteRoute
   SignInRouteRoute: typeof SignInRouteRoute
   SignUpRouteRoute: typeof SignUpRouteRoute
   TransactionsRouteRoute: typeof TransactionsRouteRoute
@@ -163,7 +217,9 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRouteRoute: AboutRouteRoute,
+  AdviceRouteRoute: AdviceRouteRoute,
   HomeRouteRoute: HomeRouteRoute,
+  SalaryRouteRoute: SalaryRouteRoute,
   SignInRouteRoute: SignInRouteRoute,
   SignUpRouteRoute: SignUpRouteRoute,
   TransactionsRouteRoute: TransactionsRouteRoute,
@@ -181,7 +237,9 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/about",
+        "/advice",
         "/home",
+        "/salary",
         "/signIn",
         "/signUp",
         "/transactions"
@@ -193,8 +251,14 @@ export const routeTree = rootRoute
     "/about": {
       "filePath": "about.route.tsx"
     },
+    "/advice": {
+      "filePath": "advice.route.tsx"
+    },
     "/home": {
       "filePath": "home.route.tsx"
+    },
+    "/salary": {
+      "filePath": "salary.route.tsx"
     },
     "/signIn": {
       "filePath": "signIn.route.tsx"
