@@ -23,7 +23,7 @@ import {
 //   ChevronDownIcon, 
 //   PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 import { Link, useLocation } from '@tanstack/react-router'
-import LOGO from "@assets/logo.svg"
+import LOGO from "@assets/logo.png"
 
 // const products = [
 //   { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
