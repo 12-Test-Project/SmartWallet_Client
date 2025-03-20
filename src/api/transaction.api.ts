@@ -28,7 +28,7 @@ async function create(
    transaction: TransactionCreateData,
    token: string,
 ): Promise<TransactionResponse> {
-   const uri = `/api/v${transaction.version}/Transacction/`;
+   const uri = `/api/v${transaction.version}/Transaction/`;
 
    const reqBody: Omit<TransactionCreateData, "version"> = {
       amount: transaction.amount,
@@ -41,7 +41,7 @@ async function create(
          method: "POST",
          headers: {
             "Accept": "*/*",
-            "Authorization": `bearer ${token}`,
+            "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
          },
          body: JSON.stringify(reqBody)
@@ -62,7 +62,7 @@ async function getById(
    transaction: Transaction,
    token: string,
 ): Promise<TransactionResponse> {
-   const uri = `/api/v${transaction.version}/Transacction/${transaction.id}`;
+   const uri = `/api/v${transaction.version}/Transaction/${transaction.id}`;
 
    try {
       const res = await fetch(uri, {
@@ -85,21 +85,25 @@ async function getById(
 async function getAll(
    version: number,
    token: string,
+   userId: string
 ): Promise<TransactionResponse> {
-   const uri = `/api/v${version}/Transacction`;
+   const uri = `/api/v${version}/Transaction`;
 
    try {
       const res = await AccountAPI.fetchWithAuth(uri, {
          method: "GET",
          headers: {
             "Accept": "application/json",
-            "Authorization": `bearer ${token}`,
+            "Authorization": `Bearer ${token}`,
          },
       });
 
       if (!res.ok) throw new Error(res.statusText);
 
       const data = (await res.json()) as TransactionResponse;
+      console.log('@@ All transactions: ', data.data)
+      const filteredtransactions = data.data.filter(f => f.userId === userId)
+      data.data = filteredtransactions
       return data;
    } catch (error) {
       throw new Error(`@@ Retrieval failed with error: ${error}`);
@@ -111,7 +115,7 @@ async function update(
    transaction: TransactionSchema,
    token: string,
 ): Promise<TransactionResponse> {
-   const uri = `/api/v${transaction.version}/Transacction/${transaction.id}`;
+   const uri = `/api/v${transaction.version}/Transaction/${transaction.id}`;
 
    try {
       const res = await fetch(uri, {
@@ -143,7 +147,7 @@ async function deleteById(
    transaction: Transaction,
    token: string,
 ): Promise<TransactionGeneralResponse> {
-   const uri = `/api/v${transaction.version}/Transacction/${transaction.id}`;
+   const uri = `/api/v${transaction.version}/Transaction/${transaction.id}`;
 
    try {
       const res = await fetch(uri, {
