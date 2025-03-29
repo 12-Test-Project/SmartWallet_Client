@@ -2,9 +2,9 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main, development ]
+    branches: [ main, dev ]
   pull_request:
-    branches: [ main, development ]
+    branches: [ main, dev ]
 
 jobs:
   test:
@@ -99,9 +99,9 @@ jobs:
   deploy-dev:
     needs: [build, docker]
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/development'
+    if: github.ref == 'refs/heads/dev'
     environment:
-      name: development
+      name: dev
       url: ${{ steps.deploy.outputs.url }}
     steps:
       - name: Download artifact
