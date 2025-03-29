@@ -1,7 +1,7 @@
 import { getToken } from "@/lib/auth"
 
-// Cambiamos la URL base para usar nuestro proxy
-const API_URL = "/api/proxy"
+// Usar la variable de entorno para la URL base de la API
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5800"
 const API_VERSION = "v1"
 
 // Helper function to handle API requests
@@ -19,16 +19,20 @@ async function apiRequest(endpoint: string, method = "GET", data?: any) {
   const config: RequestInit = {
     method,
     headers,
+    // Importante: incluir credentials para que las cookies se envíen en solicitudes cross-origin
+    credentials: "include",
+    // Permitir solicitudes cross-origin
+    mode: "cors",
   }
 
   if (data && method !== "GET") {
     config.body = JSON.stringify(data)
   }
 
-  console.log(`Making ${method} request to ${API_URL}${endpoint}`)
+  console.log(`Making ${method} request to ${API_BASE_URL}${endpoint}`)
 
   try {
-    const response = await fetch(`${API_URL}${endpoint}`, config)
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, config)
 
     console.log(`Response status: ${response.status}`)
 

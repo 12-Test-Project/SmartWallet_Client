@@ -53,10 +53,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setUser(userData)
       setToken(userData.jwToken)
 
-      // Guardar en localStorage para acceso directo
-      localStorage.setItem("user", JSON.stringify(userData))
-      localStorage.setItem("token", userData.jwToken)
-
       // Store token in IndexedDB for offline access
       if (typeof window !== "undefined" && "indexedDB" in window) {
         try {
@@ -81,10 +77,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = () => {
     setUser(null)
     setToken("")
-
-    // Limpiar localStorage
-    localStorage.removeItem("user")
-    localStorage.removeItem("token")
 
     // Clear token from IndexedDB
     if (typeof window !== "undefined" && "indexedDB" in window) {
