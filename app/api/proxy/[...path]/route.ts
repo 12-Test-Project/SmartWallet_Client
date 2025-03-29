@@ -16,12 +16,23 @@ export async function GET(request: NextRequest, { params }: { params: { path: st
   }
 
   try {
+    console.log(`Proxying GET request to: ${url}`)
+
     const response = await fetch(url, {
       method: "GET",
       headers,
     })
 
-    const data = response.status !== 204 ? await response.json() : null
+    console.log(`Response status: ${response.status}`)
+
+    if (response.status === 204) {
+      return new NextResponse(null, { status: 204 })
+    }
+
+    const data = await response.json().catch((e) => {
+      console.error("Error parsing JSON response:", e)
+      return null
+    })
 
     return NextResponse.json(data, {
       status: response.status,
@@ -48,7 +59,14 @@ export async function POST(request: NextRequest, { params }: { params: { path: s
   }
 
   try {
-    const body = await request.json().catch(() => null)
+    console.log(`Proxying POST request to: ${url}`)
+
+    let body = null
+    try {
+      body = await request.json()
+    } catch (e) {
+      console.log("No JSON body or empty body")
+    }
 
     const response = await fetch(url, {
       method: "POST",
@@ -56,7 +74,16 @@ export async function POST(request: NextRequest, { params }: { params: { path: s
       body: body ? JSON.stringify(body) : undefined,
     })
 
-    const data = response.status !== 204 ? await response.json() : null
+    console.log(`Response status: ${response.status}`)
+
+    if (response.status === 204) {
+      return new NextResponse(null, { status: 204 })
+    }
+
+    const data = await response.json().catch((e) => {
+      console.error("Error parsing JSON response:", e)
+      return null
+    })
 
     return NextResponse.json(data, {
       status: response.status,
@@ -83,7 +110,14 @@ export async function PUT(request: NextRequest, { params }: { params: { path: st
   }
 
   try {
-    const body = await request.json().catch(() => null)
+    console.log(`Proxying PUT request to: ${url}`)
+
+    let body = null
+    try {
+      body = await request.json()
+    } catch (e) {
+      console.log("No JSON body or empty body")
+    }
 
     const response = await fetch(url, {
       method: "PUT",
@@ -91,7 +125,16 @@ export async function PUT(request: NextRequest, { params }: { params: { path: st
       body: body ? JSON.stringify(body) : undefined,
     })
 
-    const data = response.status !== 204 ? await response.json() : null
+    console.log(`Response status: ${response.status}`)
+
+    if (response.status === 204) {
+      return new NextResponse(null, { status: 204 })
+    }
+
+    const data = await response.json().catch((e) => {
+      console.error("Error parsing JSON response:", e)
+      return null
+    })
 
     return NextResponse.json(data, {
       status: response.status,
@@ -116,16 +159,23 @@ export async function DELETE(request: NextRequest, { params }: { params: { path:
   }
 
   try {
+    console.log(`Proxying DELETE request to: ${url}`)
+
     const response = await fetch(url, {
       method: "DELETE",
       headers,
     })
 
+    console.log(`Response status: ${response.status}`)
+
     if (response.status === 204) {
       return new NextResponse(null, { status: 204 })
     }
 
-    const data = await response.json().catch(() => null)
+    const data = await response.json().catch((e) => {
+      console.error("Error parsing JSON response:", e)
+      return null
+    })
 
     return NextResponse.json(data, {
       status: response.status,

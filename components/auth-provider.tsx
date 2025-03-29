@@ -36,41 +36,69 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [token, user, setUser, setToken])
 
   const login = async (email: string, password: string) => {
-    const userData = await authenticateUser(email, password)
+    try {
+      const userData = await authenticateUser(email, password)
 
-    if (userData.hasError) {
-      throw new Error(userData.error || "Authentication failed")
+      if (!userData || userData.hasError) {
+        throw new Error(userData?.error || "Authentication failed")
+      }
+
+      // Asegurarse de que el token JWT esté disponible
+      if (!userData.jwToken) {
+        console.error("JWT token not found in response:", userData)
+        throw new Error("JWT token not found in response")
+      }
+
+      // Guardar el usuario y el token
+      setUser(userData)
+      setToken(userData.jwToken)
+
+      // Guardar en localStorage para acceso directo
+      localStorage.setItem("user", JSON.stringify(userData))
+      localStorage.setItem("token", userData.jwToken)
+
+      // Store token in IndexedDB for offline access
+      if (typeof window !== "undefined" && "indexedDB" in window) {
+        try {
+          const db = await openDatabase()
+          const tx = db.transaction("auth", "readwrite")
+          const store = tx.objectStore("auth")
+          await store.put({ id: "token", value: userData.jwToken })
+          await store.put({ id: "user", value: userData })
+          await tx.complete
+        } catch (dbError) {
+          console.error("Error storing auth in IndexedDB:", dbError)
+        }
+      }
+
+      return userData
+    } catch (error) {
+      console.error("Login error:", error)
+      throw error
     }
-
-    setUser(userData)
-    setToken(userData.jwToken)
-
-    // Store token in IndexedDB for offline access
-    if (typeof window !== "undefined" && "indexedDB" in window) {
-      const db = await openDatabase()
-      const tx = db.transaction("auth", "readwrite")
-      const store = tx.objectStore("auth")
-      await store.put({ id: "token", value: userData.jwToken })
-      await store.put({ id: "user", value: userData })
-      await tx.complete
-    }
-
-    return userData
   }
 
   const logout = () => {
     setUser(null)
     setToken("")
 
+    // Limpiar localStorage
+    localStorage.removeItem("user")
+    localStorage.removeItem("token")
+
     // Clear token from IndexedDB
     if (typeof window !== "undefined" && "indexedDB" in window) {
-      openDatabase().then((db) => {
-        const tx = db.transaction("auth", "readwrite")
-        const store = tx.objectStore("auth")
-        store.delete("token")
-        store.delete("user")
-        tx.complete
-      })
+      openDatabase()
+        .then((db) => {
+          const tx = db.transaction("auth", "readwrite")
+          const store = tx.objectStore("auth")
+          store.delete("token")
+          store.delete("user")
+          tx.complete
+        })
+        .catch((error) => {
+          console.error("Error clearing auth from IndexedDB:", error)
+        })
     }
   }
 

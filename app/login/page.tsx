@@ -27,9 +27,12 @@ export default function LoginPage() {
     setLoading(true)
 
     try {
+      console.log("Attempting login with:", { email })
       await login(email, password)
+      console.log("Login successful, redirecting to dashboard")
       router.push("/dashboard")
     } catch (error) {
+      console.error("Login error:", error)
       toast({
         title: t("login.error"),
         description: t("login.errorMessage"),

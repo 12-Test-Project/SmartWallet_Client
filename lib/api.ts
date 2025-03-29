@@ -25,27 +25,45 @@ async function apiRequest(endpoint: string, method = "GET", data?: any) {
     config.body = JSON.stringify(data)
   }
 
-  const response = await fetch(`${API_URL}${endpoint}`, config)
+  console.log(`Making ${method} request to ${API_URL}${endpoint}`)
 
-  if (response.status === 204) {
-    return null // No content
+  try {
+    const response = await fetch(`${API_URL}${endpoint}`, config)
+
+    console.log(`Response status: ${response.status}`)
+
+    if (response.status === 204) {
+      return null // No content
+    }
+
+    const result = await response.json()
+
+    if (!response.ok) {
+      console.error("API request failed:", result)
+      throw new Error(result.message || "API request failed")
+    }
+
+    return result.data || result
+  } catch (error) {
+    console.error(`Error in API request to ${endpoint}:`, error)
+    throw error
   }
-
-  const result = await response.json()
-
-  if (!response.ok) {
-    throw new Error(result.message || "API request failed")
-  }
-
-  return result.data || result
 }
 
 // Auth
 export async function authenticateUser(email: string, password: string) {
-  return await apiRequest(
-    `/api/Account/authenticate?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
-    "POST",
-  )
+  try {
+    console.log(`Authenticating user: ${email}`)
+    const result = await apiRequest(
+      `/api/Account/authenticate?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
+      "POST",
+    )
+    console.log("Authentication result:", result)
+    return result
+  } catch (error) {
+    console.error("Authentication error:", error)
+    throw error
+  }
 }
 
 export async function registerUser(data: {

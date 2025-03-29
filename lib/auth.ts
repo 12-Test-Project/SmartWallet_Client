@@ -3,6 +3,11 @@ export function getToken(): string | null {
   if (typeof window === "undefined") return null
 
   try {
+    // Primero intentar obtener directamente del localStorage
+    const token = localStorage.getItem("token")
+    if (token) return token
+
+    // Si no está disponible, intentar obtenerlo del objeto user
     const user = localStorage.getItem("user")
     if (!user) return null
 
