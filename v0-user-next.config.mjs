@@ -5,7 +5,7 @@ const nextConfig = {
   images: {
     domains: ['localhost'],
   },
-  // Configuración para PWA
+  output: 'standalone', // Optimización para Docker
   experimental: {
     appDir: true,
   },
