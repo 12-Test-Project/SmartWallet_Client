@@ -1,6 +1,7 @@
 import { getToken } from "@/lib/auth"
 
-const API_URL = "http://localhost:5800"
+// Cambiamos la URL base para usar nuestro proxy
+const API_URL = "/api/proxy"
 const API_VERSION = "v1"
 
 // Helper function to handle API requests
