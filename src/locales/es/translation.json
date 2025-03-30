@@ -1,0 +1,61 @@
+{
+   "app": {
+     "title": "Smart Wallet",
+     "subtitle": "Gestiona tus finanzas personales"
+   },
+   "auth": {
+     "login": "Iniciar sesión",
+     "register": "Registrarse",
+     "logout": "Cerrar sesión",
+     "email": "Correo electrónico",
+     "password": "Contraseña",
+     "name": "Nombre",
+     "phoneNumber": "Número de teléfono",
+     "username": "Nombre de usuario"
+   },
+   "navigation": {
+     "home": "Inicio",
+     "transactions": "Transacciones",
+     "income": "Ingresos",
+     "services": "Servicios",
+     "profile": "Perfil",
+     "settings": "Configuración"
+   },
+   "transactions": {
+     "title": "Transacciones",
+     "new": "Nueva transacción",
+     "amount": "Monto",
+     "type": "Tipo",
+     "date": "Fecha",
+     "edit": "Editar",
+     "delete": "Eliminar",
+     "noTransactions": "No hay transacciones"
+   },
+   "income": {
+     "title": "Ingresos",
+     "new": "Nuevo ingreso",
+     "amount": "Monto",
+     "timeLapse": "Periodo",
+     "current": "Actual",
+     "edit": "Editar",
+     "delete": "Eliminar",
+     "noIncome": "No hay ingresos registrados"
+   },
+   "services": {
+     "title": "Servicios",
+     "name": "Nombre",
+     "description": "Descripción"
+   },
+   "offline": {
+     "status": "Estás trabajando sin conexión",
+     "pendingSync": "Hay {{count}} cambios pendientes de sincronizar"
+   },
+   "common": {
+     "save": "Guardar",
+     "cancel": "Cancelar",
+     "loading": "Cargando...",
+     "error": "Ha ocurrido un error",
+     "success": "Operación exitosa",
+     "confirm": "¿Estás seguro?"
+   }
+ }
