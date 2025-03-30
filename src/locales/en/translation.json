@@ -1,0 +1,61 @@
+{
+   "app": {
+     "title": "Smart Wallet",
+     "subtitle": "Manage your personal finances"
+   },
+   "auth": {
+     "login": "Login",
+     "register": "Register",
+     "logout": "Logout",
+     "email": "Email",
+     "password": "Password",
+     "name": "Name",
+     "phoneNumber": "Phone number",
+     "username": "Username"
+   },
+   "navigation": {
+     "home": "Home",
+     "transactions": "Transactions",
+     "income": "Income",
+     "services": "Services",
+     "profile": "Profile",
+     "settings": "Settings"
+   },
+   "transactions": {
+     "title": "Transactions",
+     "new": "New transaction",
+     "amount": "Amount",
+     "type": "Type",
+     "date": "Date",
+     "edit": "Edit",
+     "delete": "Delete",
+     "noTransactions": "No transactions"
+   },
+   "income": {
+     "title": "Income",
+     "new": "New income",
+     "amount": "Amount",
+     "timeLapse": "Time period",
+     "current": "Current",
+     "edit": "Edit",
+     "delete": "Delete",
+     "noIncome": "No income registered"
+   },
+   "services": {
+     "title": "Services",
+     "name": "Name",
+     "description": "Description"
+   },
+   "offline": {
+     "status": "You are working offline",
+     "pendingSync": "There are {{count}} changes pending synchronization"
+   },
+   "common": {
+     "save": "Save",
+     "cancel": "Cancel",
+     "loading": "Loading...",
+     "error": "An error has occurred",
+     "success": "Operation successful",
+     "confirm": "Are you sure?"
+   }
+ }
