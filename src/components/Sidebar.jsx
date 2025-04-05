@@ -10,6 +10,7 @@ const Sidebar = () => {
     { path: '/transactions', label: 'navigation.transactions', icon: 'credit-card' },
     { path: '/income', label: 'navigation.income', icon: 'dollar-sign' },
     { path: '/services', label: 'navigation.services', icon: 'briefcase' },
+    { path: "/advisor", label: "navigation.advisor", icon: 'message-circle' },
     { path: '/profile', label: 'navigation.profile', icon: 'user' },
     { path: '/settings', label: 'navigation.settings', icon: 'settings' }
   ]
@@ -32,7 +33,7 @@ const Sidebar = () => {
                   }`
                 }
               >
-                <i className={`feather-${item.icon} mr-3`}></i>
+                <i className={`feather-${item.icon} mr-3`} />
                 <span>{t(item.label)}</span>
               </NavLink>
             </li>

@@ -44,3 +44,7 @@ body {
 .feather-settings::before {
   content: "⚙️";
 }
+
+.feather-message-circle::before {
+  content: "💬";
+}
