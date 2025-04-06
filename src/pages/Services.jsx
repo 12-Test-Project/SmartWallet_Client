@@ -21,7 +21,7 @@ const Services = () => {
       const data = await dbService.getAll('services')
       setServices(data)
     } catch (error) {
-      console.error('Error al cargar servicios:', error)
+      console.error(t('services.error'), error)
     } finally {
       setLoading(false)
     }
@@ -41,16 +41,16 @@ const Services = () => {
             <div key={service.id} className="bg-white rounded-lg shadow p-6">
               <h2 className="text-xl font-semibold mb-2">{service.name}</h2>
               <p className="text-gray-600 mb-4">{service.description}</p>
-              <div className="flex justify-end">
+              {/* <div className="flex justify-end">
                 <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                   Ver detalles
                 </button>
-              </div>
+              </div> */}
             </div>
           ))
         ) : (
           <div className="col-span-3 text-center p-8 bg-white rounded-lg shadow">
-            <p className="text-gray-500">No hay servicios disponibles</p>
+            <p className="text-gray-500">{t('services.notAvailable')} </p>
           </div>
         )}
       </div>

@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../../contexts/AuthContext";
@@ -432,7 +430,7 @@ const AdviceChat = () => {
 			{isInitialLoading && (
 				<div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75 z-10">
 					<div className="flex flex-col items-center">
-						<div className="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600 mb-2"></div>
+						<div className="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600 mb-2" />
 						<div className="text-blue-600">{t("advisor.initialLoading")}</div>
 					</div>
 				</div>
@@ -462,11 +460,12 @@ const AdviceChat = () => {
 									message.status === "STARTED") &&
 									message.taskId && (
 										<button
+											type="button"
 											onClick={() => handleCheckStatus(message)}
 											className="text-blue-600 hover:text-blue-800 text-xs flex items-center"
 											title={t("advisor.checkStatus")}
 										>
-											<i className="feather-refresh-cw mr-1"></i>
+											<i className="feather-refresh-cw mr-1" />
 											{t("advisor.refresh")}
 										</button>
 									)}
@@ -492,6 +491,7 @@ const AdviceChat = () => {
 										{t("advisor.error")}: {message.error}
 									</div>
 									<button
+										type="button"
 										onClick={() => handleRetry(message)}
 										className="text-blue-600 hover:text-blue-800"
 									>

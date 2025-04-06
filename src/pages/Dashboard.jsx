@@ -57,7 +57,7 @@ const Dashboard = () => {
 
 			<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
 				<div className="bg-white rounded-lg shadow p-6">
-					<h2 className="text-lg font-semibold mb-2">Balance Total</h2>
+					<h2 className="text-lg font-semibold mb-2">{t("balance.total")}</h2>
 					<p
 						className={`text-3xl font-bold ${calculateBalance() >= 0 ? "text-green-600" : "text-red-600"}`}
 					>
@@ -66,14 +66,16 @@ const Dashboard = () => {
 				</div>
 
 				<div className="bg-white rounded-lg shadow p-6">
-					<h2 className="text-lg font-semibold mb-2">Ingresos</h2>
+					<h2 className="text-lg font-semibold mb-2">{t("income.title")} </h2>
 					<p className="text-3xl font-bold text-blue-600">
 						${income.reduce((sum, item) => sum + item.amount, 0).toFixed(2)}
 					</p>
 				</div>
 
 				<div className="bg-white rounded-lg shadow p-6">
-					<h2 className="text-lg font-semibold mb-2">Gastos</h2>
+					<h2 className="text-lg font-semibold mb-2">
+						{t("transactions.expenses")}{" "}
+					</h2>
 					<p className="text-3xl font-bold text-red-600">
 						$
 						{transactions
@@ -91,7 +93,7 @@ const Dashboard = () => {
 							to="/transactions"
 							className="text-blue-600 hover:text-blue-800 text-sm"
 						>
-							Ver todos
+							{t("common.seeAll")}
 						</Link>
 					</div>
 
@@ -119,8 +121,8 @@ const Dashboard = () => {
 				</div>
 
 				<div className="container mx-auto p-4">
-					<h1 className="text-2xl font-bold mb-4">{t("dashboard.title")}</h1>
-					<p className="mb-4">{t("dashboard.welcomeMessage")}</p>
+					{/* <h1 className="text-2xl font-bold mb-4">{t("dashboard.title")}</h1>
+					<p className="mb-4">{t("dashboard.welcomeMessage")}</p> */}
 
 					{/* Advisor Section */}
 					<div className="bg-white rounded-lg shadow-md p-6 mb-6">
@@ -136,14 +138,14 @@ const Dashboard = () => {
 					</div>
 
 					{/* Placeholder for other dashboard content */}
-					<div className="bg-white rounded-lg shadow-md p-6">
+					{/* <div className="bg-white rounded-lg shadow-md p-6">
 						<h2 className="text-xl font-bold mb-4">
 							{t("dashboard.otherContent")}
 						</h2>
 						<p className="text-gray-600">
 							{t("dashboard.otherContentDescription")}
 						</p>
-					</div>
+					</div> */}
 				</div>
 
 				<div className="bg-white rounded-lg shadow p-6">
@@ -153,7 +155,7 @@ const Dashboard = () => {
 							to="/income"
 							className="text-blue-600 hover:text-blue-800 text-sm"
 						>
-							Ver todos
+							{t('common.seeAll')}
 						</Link>
 					</div>
 

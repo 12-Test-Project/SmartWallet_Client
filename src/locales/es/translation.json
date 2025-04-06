@@ -1,4 +1,16 @@
 {
+	"balance": {
+		"total": "Balance Total"
+	},
+	"language": {
+		"label": "Idioma",
+		"select": "Seleccionar idioma"
+	},
+	"sync": {
+		"label": "Sincronización",
+		"connectionState": "Estado de conexión",
+		"pendingChanges": "Cambios pendientes"
+	},
 	"app": {
 		"title": "Smart Wallet",
 		"subtitle": "Gestiona tus finanzas personales"
@@ -18,6 +30,7 @@
 		"transactions": "Transacciones",
 		"income": "Ingresos",
 		"services": "Servicios",
+		"advisor": "Asesor",
 		"profile": "Perfil",
 		"settings": "Configuración"
 	},
@@ -29,7 +42,8 @@
 		"date": "Fecha",
 		"edit": "Editar",
 		"delete": "Eliminar",
-		"noTransactions": "No hay transacciones"
+		"noTransactions": "No hay transacciones",
+		"expenses": "Gastos"
 	},
 	"income": {
 		"title": "Ingresos",
@@ -44,7 +58,9 @@
 	"services": {
 		"title": "Servicios",
 		"name": "Nombre",
-		"description": "Descripción"
+		"description": "Descripción",
+		"notAvailable": "No hay servicios disponibles",
+		"error": "Error al cargar servicios"
 	},
 	"advisor": {
 		"title": "Asesor Financiero IA",
@@ -54,6 +70,8 @@
 		"loading": "Pensando...",
 		"error": "Error al obtener consejo",
 		"retry": "Intentar de nuevo",
+		"refresh": "Refrescar",
+      "checkStatus": "Ver estado",
 		"adviceTypes": {
 			"financial": "Financiero",
 			"savings": "Ahorros",
@@ -68,7 +86,8 @@
 	},
 	"offline": {
 		"status": "Estás trabajando sin conexión",
-		"pendingSync": "Hay {{count}} cambios pendientes de sincronizar"
+		"pendingSync": "Hay {{count}} cambios pendientes de sincronizar",
+		"sync": "Sincronizar"
 	},
 	"common": {
 		"save": "Guardar",
@@ -76,6 +95,21 @@
 		"loading": "Cargando...",
 		"error": "Ha ocurrido un error",
 		"success": "Operación exitosa",
-		"confirm": "¿Estás seguro?"
+		"confirm": "¿Estás seguro?",
+		"confirm1": "Confirmar",
+		"seeAll": "Ver todos",
+		"state": "Estado",
+		"actions": "Acciones",
+		"additionalInfo": "Información Adicional",
+		"creationDate": "Fecha de creación",
+		"syncState": "Estado de sincronización",
+		"roles": "Roles"
+	},
+	"error": {
+		"allRequired": "Todos los campos son obligatorios",
+		"signInError": "Error al iniciar sesión",
+		"notFound": "Página no encontrada",
+		"passwordsNoMatch": "Passwords don't match",
+		"signUpError": "Error signin up"
 	}
 }

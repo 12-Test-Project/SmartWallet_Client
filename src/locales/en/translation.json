@@ -1,4 +1,16 @@
 {
+	"balance": {
+		"total": "Total Balance"
+	},
+	"language": {
+		"label": "Language",
+		"select": "Select language"
+	},
+	"sync": {
+		"label": "Synchronization",
+		"connectionState": "Connection State",
+		"pendingChanges": "Pending changes"
+	},
 	"app": {
 		"title": "Smart Wallet",
 		"subtitle": "Manage your personal finances"
@@ -30,7 +42,8 @@
 		"date": "Date",
 		"edit": "Edit",
 		"delete": "Delete",
-		"noTransactions": "No transactions"
+		"noTransactions": "No transactions",
+		"expenses": "Expenses"
 	},
 	"income": {
 		"title": "Income",
@@ -45,7 +58,9 @@
 	"services": {
 		"title": "Services",
 		"name": "Name",
-		"description": "Description"
+		"description": "Description",
+		"notAvailable": "No services available",
+		"error": "Error loading services"
 	},
 	"advisor": {
       "title": "AI Financial Advisor",
@@ -71,7 +86,8 @@
     },
 	"offline": {
 		"status": "You are working offline",
-		"pendingSync": "There are {{count}} changes pending synchronization"
+		"pendingSync": "There are {{count}} changes pending synchronization",
+		"sync": "Synchronize"
 	},
 	"common": {
 		"save": "Save",
@@ -79,6 +95,21 @@
 		"loading": "Loading...",
 		"error": "An error has occurred",
 		"success": "Operation successful",
-		"confirm": "Are you sure?"
+		"confirm": "Are you sure?",
+		"confirm1": "Confirm",
+		"seeAll": "See all",
+		"state": "State",
+		"actions": "Actions",
+		"additionalInfo": "Additional Information",
+		"creationDate": "Created at",
+		"syncState": "Sync State",
+		"roles": "Roles"
+	},
+	"error": {
+		"allRequired": "All fields are required",
+		"signInError": "Error signing in",
+		"notFound": "Page not found",
+		"passwordsNoMatch": "Passwords don't match",
+		"signUpError": "Error signin up"
 	}
 }

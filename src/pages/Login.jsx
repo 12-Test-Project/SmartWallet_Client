@@ -17,7 +17,7 @@ const Login = () => {
     setFormError('')
     
     if (!email || !password) {
-      setFormError('Todos los campos son obligatorios')
+      setFormError(t('error.allRequired'))
       return
     }
     
@@ -25,7 +25,7 @@ const Login = () => {
       await login(email, password)
       navigate('/')
     } catch (err) {
-      setFormError(err.message || 'Error al iniciar sesión')
+      setFormError(err.message || t('error.signInError'))
     }
   }
   
