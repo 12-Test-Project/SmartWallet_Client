@@ -1,61 +1,115 @@
 {
-   "app": {
-     "title": "Smart Wallet",
-     "subtitle": "Manage your personal finances"
-   },
-   "auth": {
-     "login": "Login",
-     "register": "Register",
-     "logout": "Logout",
-     "email": "Email",
-     "password": "Password",
-     "name": "Name",
-     "phoneNumber": "Phone number",
-     "username": "Username"
-   },
-   "navigation": {
-     "home": "Home",
-     "transactions": "Transactions",
-     "income": "Income",
-     "services": "Services",
-     "profile": "Profile",
-     "settings": "Settings"
-   },
-   "transactions": {
-     "title": "Transactions",
-     "new": "New transaction",
-     "amount": "Amount",
-     "type": "Type",
-     "date": "Date",
-     "edit": "Edit",
-     "delete": "Delete",
-     "noTransactions": "No transactions"
-   },
-   "income": {
-     "title": "Income",
-     "new": "New income",
-     "amount": "Amount",
-     "timeLapse": "Time period",
-     "current": "Current",
-     "edit": "Edit",
-     "delete": "Delete",
-     "noIncome": "No income registered"
-   },
-   "services": {
-     "title": "Services",
-     "name": "Name",
-     "description": "Description"
-   },
-   "offline": {
-     "status": "You are working offline",
-     "pendingSync": "There are {{count}} changes pending synchronization"
-   },
-   "common": {
-     "save": "Save",
-     "cancel": "Cancel",
-     "loading": "Loading...",
-     "error": "An error has occurred",
-     "success": "Operation successful",
-     "confirm": "Are you sure?"
-   }
- }
+	"balance": {
+		"total": "Total Balance"
+	},
+	"language": {
+		"label": "Language",
+		"select": "Select language"
+	},
+	"sync": {
+		"label": "Synchronization",
+		"connectionState": "Connection State",
+		"pendingChanges": "Pending changes"
+	},
+	"app": {
+		"title": "Smart Wallet",
+		"subtitle": "Manage your personal finances"
+	},
+	"auth": {
+		"login": "Login",
+		"register": "Register",
+		"logout": "Logout",
+		"email": "Email",
+		"password": "Password",
+		"name": "Name",
+		"phoneNumber": "Phone number",
+		"username": "Username"
+	},
+	"navigation": {
+		"home": "Home",
+		"transactions": "Transactions",
+		"income": "Income",
+		"services": "Services",
+		"advisor": "Advisor",
+		"profile": "Profile",
+		"settings": "Settings"
+	},
+	"transactions": {
+		"title": "Transactions",
+		"new": "New transaction",
+		"amount": "Amount",
+		"type": "Type",
+		"date": "Date",
+		"edit": "Edit",
+		"delete": "Delete",
+		"noTransactions": "No transactions",
+		"expenses": "Expenses"
+	},
+	"income": {
+		"title": "Income",
+		"new": "New income",
+		"amount": "Amount",
+		"timeLapse": "Time period",
+		"current": "Current",
+		"edit": "Edit",
+		"delete": "Delete",
+		"noIncome": "No income registered"
+	},
+	"services": {
+		"title": "Services",
+		"name": "Name",
+		"description": "Description",
+		"notAvailable": "No services available",
+		"error": "Error loading services"
+	},
+	"advisor": {
+      "title": "AI Financial Advisor",
+      "subtitle": "Get personalized financial advice",
+      "askPlaceholder": "Ask me anything about your finances...",
+      "send": "Send",
+      "loading": "Thinking...",
+      "error": "Error getting advice",
+      "retry": "Try again",
+      "refresh": "Refresh",
+      "checkStatus": "Check status",
+      "adviceTypes": {
+        "financial": "Financial",
+        "savings": "Savings",
+        "investment": "Investment",
+        "budget": "Budget",
+        "debt": "Debt",
+        "general": "General"
+      },
+      "history": "Advice History",
+      "noHistory": "No previous advice",
+      "viewHistory": "View History"
+    },
+	"offline": {
+		"status": "You are working offline",
+		"pendingSync": "There are {{count}} changes pending synchronization",
+		"sync": "Synchronize"
+	},
+	"common": {
+		"save": "Save",
+		"cancel": "Cancel",
+		"loading": "Loading...",
+		"error": "An error has occurred",
+		"success": "Operation successful",
+		"confirm": "Are you sure?",
+		"confirm1": "Confirm",
+		"seeAll": "See all",
+		"state": "State",
+		"actions": "Actions",
+		"additionalInfo": "Additional Information",
+		"creationDate": "Created at",
+		"syncState": "Sync State",
+		"roles": "Roles"
+	},
+	"error": {
+		"allRequired": "All fields are required",
+		"signInError": "Error signing in",
+		"notFound": "Page not found",
+		"passwordsNoMatch": "Passwords don't match",
+		"signUpError": "Error signin up"
+	}
+}

@@ -1,61 +1,115 @@
 {
-   "app": {
-     "title": "Smart Wallet",
-     "subtitle": "Gestiona tus finanzas personales"
-   },
-   "auth": {
-     "login": "Iniciar sesión",
-     "register": "Registrarse",
-     "logout": "Cerrar sesión",
-     "email": "Correo electrónico",
-     "password": "Contraseña",
-     "name": "Nombre",
-     "phoneNumber": "Número de teléfono",
-     "username": "Nombre de usuario"
-   },
-   "navigation": {
-     "home": "Inicio",
-     "transactions": "Transacciones",
-     "income": "Ingresos",
-     "services": "Servicios",
-     "profile": "Perfil",
-     "settings": "Configuración"
-   },
-   "transactions": {
-     "title": "Transacciones",
-     "new": "Nueva transacción",
-     "amount": "Monto",
-     "type": "Tipo",
-     "date": "Fecha",
-     "edit": "Editar",
-     "delete": "Eliminar",
-     "noTransactions": "No hay transacciones"
-   },
-   "income": {
-     "title": "Ingresos",
-     "new": "Nuevo ingreso",
-     "amount": "Monto",
-     "timeLapse": "Periodo",
-     "current": "Actual",
-     "edit": "Editar",
-     "delete": "Eliminar",
-     "noIncome": "No hay ingresos registrados"
-   },
-   "services": {
-     "title": "Servicios",
-     "name": "Nombre",
-     "description": "Descripción"
-   },
-   "offline": {
-     "status": "Estás trabajando sin conexión",
-     "pendingSync": "Hay {{count}} cambios pendientes de sincronizar"
-   },
-   "common": {
-     "save": "Guardar",
-     "cancel": "Cancelar",
-     "loading": "Cargando...",
-     "error": "Ha ocurrido un error",
-     "success": "Operación exitosa",
-     "confirm": "¿Estás seguro?"
-   }
- }
+	"balance": {
+		"total": "Balance Total"
+	},
+	"language": {
+		"label": "Idioma",
+		"select": "Seleccionar idioma"
+	},
+	"sync": {
+		"label": "Sincronización",
+		"connectionState": "Estado de conexión",
+		"pendingChanges": "Cambios pendientes"
+	},
+	"app": {
+		"title": "Smart Wallet",
+		"subtitle": "Gestiona tus finanzas personales"
+	},
+	"auth": {
+		"login": "Iniciar sesión",
+		"register": "Registrarse",
+		"logout": "Cerrar sesión",
+		"email": "Correo electrónico",
+		"password": "Contraseña",
+		"name": "Nombre",
+		"phoneNumber": "Número de teléfono",
+		"username": "Nombre de usuario"
+	},
+	"navigation": {
+		"home": "Inicio",
+		"transactions": "Transacciones",
+		"income": "Ingresos",
+		"services": "Servicios",
+		"advisor": "Asesor",
+		"profile": "Perfil",
+		"settings": "Configuración"
+	},
+	"transactions": {
+		"title": "Transacciones",
+		"new": "Nueva transacción",
+		"amount": "Monto",
+		"type": "Tipo",
+		"date": "Fecha",
+		"edit": "Editar",
+		"delete": "Eliminar",
+		"noTransactions": "No hay transacciones",
+		"expenses": "Gastos"
+	},
+	"income": {
+		"title": "Ingresos",
+		"new": "Nuevo ingreso",
+		"amount": "Monto",
+		"timeLapse": "Periodo",
+		"current": "Actual",
+		"edit": "Editar",
+		"delete": "Eliminar",
+		"noIncome": "No hay ingresos registrados"
+	},
+	"services": {
+		"title": "Servicios",
+		"name": "Nombre",
+		"description": "Descripción",
+		"notAvailable": "No hay servicios disponibles",
+		"error": "Error al cargar servicios"
+	},
+	"advisor": {
+		"title": "Asesor Financiero IA",
+		"subtitle": "Obtén consejos financieros personalizados",
+		"askPlaceholder": "Pregúntame cualquier cosa sobre tus finanzas...",
+		"send": "Enviar",
+		"loading": "Pensando...",
+		"error": "Error al obtener consejo",
+		"retry": "Intentar de nuevo",
+		"refresh": "Refrescar",
+      "checkStatus": "Ver estado",
+		"adviceTypes": {
+			"financial": "Financiero",
+			"savings": "Ahorros",
+			"investment": "Inversión",
+			"budget": "Presupuesto",
+			"debt": "Deudas",
+			"general": "General"
+		},
+		"history": "Historial de Consejos",
+		"noHistory": "No hay consejos previos",
+		"viewHistory": "Ver Historial"
+	},
+	"offline": {
+		"status": "Estás trabajando sin conexión",
+		"pendingSync": "Hay {{count}} cambios pendientes de sincronizar",
+		"sync": "Sincronizar"
+	},
+	"common": {
+		"save": "Guardar",
+		"cancel": "Cancelar",
+		"loading": "Cargando...",
+		"error": "Ha ocurrido un error",
+		"success": "Operación exitosa",
+		"confirm": "¿Estás seguro?",
+		"confirm1": "Confirmar",
+		"seeAll": "Ver todos",
+		"state": "Estado",
+		"actions": "Acciones",
+		"additionalInfo": "Información Adicional",
+		"creationDate": "Fecha de creación",
+		"syncState": "Estado de sincronización",
+		"roles": "Roles"
+	},
+	"error": {
+		"allRequired": "Todos los campos son obligatorios",
+		"signInError": "Error al iniciar sesión",
+		"notFound": "Página no encontrada",
+		"passwordsNoMatch": "Passwords don't match",
+		"signUpError": "Error signin up"
+	}
+}

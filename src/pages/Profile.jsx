@@ -33,6 +33,7 @@ const Profile = () => {
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-semibold">Información personal</h2>
           <button
+          type='button'
             onClick={() => setIsEditing(!isEditing)}
             className="text-blue-600 hover:text-blue-800"
           >
@@ -104,7 +105,7 @@ const Profile = () => {
               <p className="font-medium">{user?.email}</p>
             </div>
             <div>
-              <p className="text-sm text-gray-500">Roles</p>
+              <p className="text-sm text-gray-500">{t('common.roles')}</p>
               <p className="font-medium">
                 {user?.roles?.join(', ')}
               </p>

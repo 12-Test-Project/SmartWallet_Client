@@ -33,12 +33,12 @@ const Register = () => {
     // Validaciones básicas
     if (!formData.name || !formData.phoneNumber || !formData.userName || 
         !formData.email || !formData.password || !formData.confirmPassword) {
-      setFormError('Todos los campos son obligatorios')
+      setFormError(t('error.allRequired'))
       return
     }
     
     if (formData.password !== formData.confirmPassword) {
-      setFormError('Las contraseñas no coinciden')
+      setFormError(t('error.passwordsNoMatch'))
       return
     }
     
@@ -46,7 +46,7 @@ const Register = () => {
       await register(formData)
       navigate('/login')
     } catch (err) {
-      setFormError(err.message || 'Error al registrar usuario')
+      setFormError(err.message || t('error.signUpError'))
     }
   }
   
@@ -135,7 +135,7 @@ const Register = () => {
               />
             </div>
             <div>
-              <label htmlFor="confirmPassword" className="sr-only">Confirmar {t('auth.password')}</label>
+              <label htmlFor="confirmPassword" className="sr-only">{t('common.confirm1')} {t('auth.password')}</label>
               <input
                 id="confirmPassword"
                 name="confirmPassword"

@@ -5,6 +5,9 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    allowedHosts: true
+  },
   plugins: [
     react(),
     tailwindcss(),
@@ -63,7 +66,7 @@ export default defineConfig({
             }
           }
         ]
-      }
+      },
     })
   ],
 })
