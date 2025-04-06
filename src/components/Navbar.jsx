@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../contexts/AuthContext";
 import { useDatabase } from "../contexts/DatabaseContext";
+import { NavLink } from "react-router-dom";
 
 const Navbar = ({ user }) => {
 	const { t } = useTranslation();
@@ -13,9 +14,9 @@ const Navbar = ({ user }) => {
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="flex justify-between h-16">
 					<div className="flex items-center">
-						<h1 className="text-xl font-bold text-gray-900">
-							{t("app.title")}
-						</h1>
+						<NavLink to={"/"} className={"text-xl font-bold text-gray-900"}>
+							<span>{t("app.title")}</span>
+						</NavLink>
 					</div>
 					<div className="flex items-center space-x-4">
 						{!isOnline && (

@@ -511,7 +511,7 @@ const AdviceChat = () => {
 
 			{/* Input form */}
 			<form onSubmit={handleSubmit} className="mt-auto">
-				<div className="flex items-center gap-2">
+				<div className="flex flex-wrap items-center gap-2">
 					<select
 						value={adviceType}
 						onChange={(e) => setAdviceType(e.target.value)}
