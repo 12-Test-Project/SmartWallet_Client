@@ -515,7 +515,7 @@ const AdviceChat = () => {
 					<select
 						value={adviceType}
 						onChange={(e) => setAdviceType(e.target.value)}
-						className="bg-gray-100 border border-gray-300 rounded-lg px-3 py-2"
+						className="bg-gray-200 border border-gray-300 rounded-lg px-3 py-2"
 					>
 						<option value="financial">
 							{t("advisor.adviceTypes.financial")}
