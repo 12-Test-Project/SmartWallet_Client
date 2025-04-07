@@ -58,10 +58,10 @@ const Register = () => {
 
 	return (
 		<div className="min-h-screen flex items-center justify-center bg-gray-200 py-12 px-4 sm:px-6 lg:px-8">
-			<div className="login-bg-image__inputs-container">
-				<img className="login-bg-image shadow-md " src="/persona.png" alt="" />
+			<div className="signup-bg-image__inputs-container">
+				<img className="signup-bg-image shadow-md " src="/persona.png" alt="" width={32} height={32} />
 
-				<div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-md login-inputs-container">
+				<div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-md signup-inputs-container">
 					<div>
 						<h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
 							{t("auth.register")}

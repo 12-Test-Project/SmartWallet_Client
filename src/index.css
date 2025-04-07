@@ -54,21 +54,71 @@ body {
 	/* @apply grid grid-cols-1 items-center hidden; */
 }
 
-.login-bg-image {
+.login-bg-image-parent {
 	display: none;
 	/* block h-full object-cover rounded-lg rounded-r-[0px]  */
 }
 
+.signup-bg-image__inputs-container {
+	/* @apply grid grid-cols-1 items-center hidden; */
+}
+
+.signup-bg-image-parent {
+	display: none;
+	/* block h-full object-cover rounded-lg rounded-r-[0px]  */
+}
+
+.signup-bg-image {
+  display: none;
+}
+
 @media screen and (min-width: 628px) {
 	.login-bg-image__inputs-container {
-		@apply grid grid-cols-2 items-center;
+    display: flex;
+		/* @apply grid grid-cols-2 items-center; */
 	}
 
+  .login-bg-image-parent {
+    display: block;
+    /* @apply p-10 bg-red-100 */
+  }
+
 	.login-bg-image {
-		@apply block h-full object-cover rounded-lg rounded-r-[0px];
+    height: 100%
+		/* @apply h-full object-cover rounded-lg rounded-r-[0px]; */
 	}
 
 	.login-inputs-container {
 		@apply rounded-l-[0px];
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+	}
+
+  .signup-bg-image__inputs-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+		/* @apply grid grid-cols-2 items-center; */
+	}
+
+  .signup-bg-image-parent {
+    /* display: block; */
+    /* @apply p-10 bg-red-100 */
+  }
+
+	.signup-bg-image {
+    display: initial;
+    width: auto;
+    height: 100%;
+    max-height: 80vh;
+    /* height: 100% */
+		/* @apply h-full object-cover rounded-lg rounded-r-[0px]; */
+	}
+
+	.signup-inputs-container {
+		@apply rounded-l-[0px];
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 	}
 }
