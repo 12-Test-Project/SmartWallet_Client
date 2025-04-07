@@ -9,7 +9,8 @@
 	"sync": {
 		"label": "Sincronización",
 		"connectionState": "Estado de conexión",
-		"pendingChanges": "Cambios pendientes"
+		"pendingChanges": "Cambios pendientes",
+		"force": "Forzar sincronización"
 	},
 	"app": {
 		"title": "Smart Wallet",

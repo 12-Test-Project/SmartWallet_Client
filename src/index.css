@@ -4,47 +4,121 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 /* Estilos para iconos feather */
 .feather {
-  width: 24px;
-  height: 24px;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  fill: none;
+	width: 24px;
+	height: 24px;
+	stroke: currentColor;
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	fill: none;
 }
 
 /* Clases para iconos específicos */
 .feather-home::before {
-  content: "🏠";
+	content: "🏠";
 }
 
 .feather-credit-card::before {
-  content: "💳";
+	content: "💳";
 }
 
 .feather-dollar-sign::before {
-  content: "💰";
+	content: "💰";
 }
 
 .feather-briefcase::before {
-  content: "💼";
+	content: "💼";
 }
 
 .feather-user::before {
-  content: "👤";
+	content: "👤";
 }
 
 .feather-settings::before {
-  content: "⚙️";
+	content: "⚙️";
 }
 
 .feather-message-circle::before {
-  content: "💬";
+	content: "💬";
+}
+
+.login-bg-image__inputs-container {
+	/* @apply grid grid-cols-1 items-center hidden; */
+}
+
+.login-bg-image-parent {
+	display: none;
+	/* block h-full object-cover rounded-lg rounded-r-[0px]  */
+}
+
+.signup-bg-image__inputs-container {
+	/* @apply grid grid-cols-1 items-center hidden; */
+}
+
+.signup-bg-image-parent {
+	display: none;
+	/* block h-full object-cover rounded-lg rounded-r-[0px]  */
+}
+
+.signup-bg-image {
+  display: none;
+}
+
+@media screen and (min-width: 628px) {
+	.login-bg-image__inputs-container {
+    display: flex;
+		/* @apply grid grid-cols-2 items-center; */
+	}
+
+  .login-bg-image-parent {
+    display: block;
+    /* @apply p-10 bg-red-100 */
+  }
+
+	.login-bg-image {
+    height: 100%
+		/* @apply h-full object-cover rounded-lg rounded-r-[0px]; */
+	}
+
+	.login-inputs-container {
+		@apply rounded-l-[0px];
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+	}
+
+  .signup-bg-image__inputs-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+		/* @apply grid grid-cols-2 items-center; */
+	}
+
+  .signup-bg-image-parent {
+    /* display: block; */
+    /* @apply p-10 bg-red-100 */
+  }
+
+	.signup-bg-image {
+    display: initial;
+    width: auto;
+    height: 100%;
+    max-height: 80vh;
+    /* height: 100% */
+		/* @apply h-full object-cover rounded-lg rounded-r-[0px]; */
+	}
+
+	.signup-inputs-container {
+		@apply rounded-l-[0px];
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+	}
 }
