@@ -31,7 +31,7 @@
 		"transactions": "Transactions",
 		"income": "Income",
 		"services": "Services",
-		"advisor": "Advisor",
+		"advisor": "Monee",
 		"profile": "Profile",
 		"settings": "Settings"
 	},
@@ -64,7 +64,7 @@
 		"error": "Error loading services"
 	},
 	"advisor": {
-      "title": "AI Financial Advisor",
+      "title": "Monee",
       "subtitle": "Get personalized financial advice",
       "askPlaceholder": "Ask me anything about your finances...",
       "send": "Send",

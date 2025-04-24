@@ -31,7 +31,7 @@
 		"transactions": "Transacciones",
 		"income": "Ingresos",
 		"services": "Servicios",
-		"advisor": "Asesor",
+		"advisor": "Monee",
 		"profile": "Perfil",
 		"settings": "Configuración"
 	},
@@ -64,7 +64,7 @@
 		"error": "Error al cargar servicios"
 	},
 	"advisor": {
-		"title": "Asesor Financiero IA",
+		"title": "Monee",
 		"subtitle": "Obtén consejos financieros personalizados",
 		"askPlaceholder": "Pregúntame cualquier cosa sobre tus finanzas...",
 		"send": "Enviar",
@@ -98,7 +98,7 @@
 		"success": "Operación exitosa",
 		"confirm": "¿Estás seguro?",
 		"confirm1": "Confirmar",
-		"seeAll": "Ver todos",
+		"seeAll": "Ver todas",
 		"state": "Estado",
 		"actions": "Acciones",
 		"additionalInfo": "Información Adicional",

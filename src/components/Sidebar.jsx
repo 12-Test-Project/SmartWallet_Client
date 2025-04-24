@@ -64,7 +64,11 @@ const Sidebar = ({ isOpen, onClose }) => {
 									}`
 								}
 							>
+							{item.path === "/advisor" ? (
+	<img src="/Monee.png" alt="Monee" className="h-6 w-6 mt-1" />
+							) : (
 								<i className={`feather-${item.icon} mr-3`} />
+							)}
 								<span>{t(item.label)}</span>
 							</NavLink>
 						</li>

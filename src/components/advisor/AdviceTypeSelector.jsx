@@ -25,7 +25,7 @@ const AdviceTypeSelector = ({ selectedType, onTypeChange }) => {
 					}`}
 					onClick={() => onTypeChange(type.id)}
 				>
-					<i className={`feather-${type.icon} mr-2`} />
+					{/* <i className={`feather-${type.icon} mr-2`} /> */}
 					{t(`advisor.adviceTypes.${type.id}`)}
 				</button>
 			))}

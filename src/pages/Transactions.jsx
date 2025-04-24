@@ -5,7 +5,8 @@ import { useAuth } from "../contexts/AuthContext";
 import { useDatabase } from "../contexts/DatabaseContext";
 
 const Transactions = () => {
-	const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+	const [language, setLanguage] = useState(i18n.language);
 	const { user } = useAuth();
 	const { dbService, isOnline } = useDatabase();
 
@@ -182,8 +183,8 @@ const Transactions = () => {
 											}`}
 										>
 											{transaction.syncStatus === "synced"
-												? "Sincronizado"
-												: "Pendiente"}
+												? (language === 'en' ? 'Syncronized' : 'Sincronizado') 
+												: (language === 'en' ? 'Pending' : 'Pendiente')}
 										</span>
 									</td>
 									<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">

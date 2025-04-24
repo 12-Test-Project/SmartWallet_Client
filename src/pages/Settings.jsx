@@ -20,6 +20,13 @@ const Settings = () => {
 		}
 	};
 
+	const getTranslatedSyncState = (language) => {
+		if (language === 'en') {
+			return isOnline ? "Online" : "No connection";
+		}
+		return isOnline ? "En línea" : "Sin conexión";
+	};
+
 	return (
 		<div className="container mx-auto px-4">
 			<h1 className="text-2xl font-bold mb-6">{t("navigation.settings")}</h1>
@@ -49,7 +56,7 @@ const Settings = () => {
 						<span
 							className={`ml-2 font-medium ${isOnline ? "text-green-600" : "text-red-600"}`}
 						>
-							{isOnline ? "En línea" : "Sin conexión"}
+							{getTranslatedSyncState(language)}
 						</span>
 					</p>
 					<p className="text-sm text-gray-700">

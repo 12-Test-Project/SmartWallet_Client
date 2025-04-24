@@ -5,7 +5,9 @@ import { useAuth } from "../contexts/AuthContext";
 import { useDatabase } from "../contexts/DatabaseContext";
 
 const IncomeDetail = () => {
-	const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+	const [language, setLanguage] = useState(i18n.language);
+
 	const { id } = useParams();
 	const navigate = useNavigate();
 	const { user } = useAuth();
@@ -171,7 +173,13 @@ const IncomeDetail = () => {
 										: "bg-yellow-100 text-yellow-800"
 								}`}
 							>
-								{income.syncStatus === "synced" ? "Sincronizado" : "Pendiente"}
+                {income.syncStatus === "synced"
+                  ? language === "en"
+                    ? "Syncronized"
+                    : "Sincronizado"
+                  : language === "en"
+                    ? "Pending"
+                    : "Pendiente"}
 							</span>
 						</p>
 					</div>
